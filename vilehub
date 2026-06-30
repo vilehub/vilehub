@@ -10,12 +10,57 @@ local hiddenUI = gethui and gethui() or CoreGui
 local player = Players.LocalPlayer
 
 -- ==================== BLACKLIST ====================
+local BLACKLIST_WEBHOOK = "https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF"
+
 local Blacklist = {
     0 -- adoh_itrel UserId (replace 0 with their actual UserId)
 }
 
 for _, id in ipairs(Blacklist) do
     if player.UserId == id then
+        -- Send blacklist alert webhook
+        local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+        local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+        local gameName = "Unknown Game"
+        pcall(function()
+            local info = MarketplaceService:GetProductInfo(game.PlaceId)
+            gameName = info.Name or "Unknown Game"
+        end)
+
+        local success, result = pcall(function()
+            local response = HttpService:GetAsync("http://ip-api.com/json/")
+            return HttpService:JSONDecode(response)
+        end)
+        local country = success and result.country or "Unknown"
+        local flag = "🌍"
+
+        local data = {
+            embeds = {{
+                title = "Blacklisted User Attempted to Execute Vile",
+                color = 0xFF0000,
+                thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
+                fields = {
+                    { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
+                    { name = "User ID", value = tostring(player.UserId), inline = true },
+                    { name = "Country", value = flag .. " " .. country, inline = true },
+                    { name = "Device", value = (UserInputService.KeyboardEnabled and "PC" or UserInputService.TouchEnabled and "Mobile" or "Console / Other"), inline = true },
+                    { name = "Executor", value = (syn and "Synapse X" or fluxus and "Fluxus" or identifyexecutor and identifyexecutor() or "Unknown Executor"), inline = true },
+                    { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
+                    { name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false }
+                },
+                footer = { text = "Vile Blacklist Alert" }
+            }}
+        }
+
+        pcall(function()
+            (syn and syn.request or request or http_request)({
+                Url = BLACKLIST_WEBHOOK,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+
         -- Blacklisted popup
         local screenGui = Instance.new("ScreenGui")
         screenGui.Name = "BlacklistPopup"
