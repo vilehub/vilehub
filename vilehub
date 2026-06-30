@@ -11,11 +11,44 @@ local player = Players.LocalPlayer
 
 -- ==================== BLACKLIST ====================
 local Blacklist = {
-    0 -- Replace 0 with adoh_itrel's UserId
+    0 -- adoh_itrel UserId (replace 0 with their actual UserId)
 }
 
 for _, id in ipairs(Blacklist) do
-    if player.UserId == id then return end
+    if player.UserId == id then
+        -- Blacklisted popup
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "BlacklistPopup"
+        screenGui.ResetOnSpawn = false
+        screenGui.Parent = hiddenUI
+
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0, 380, 0, 140)
+        frame.Position = UDim2.new(0.5, -190, 0.5, -70)
+        frame.BackgroundColor3 = Color3.fromRGB(20, 18, 26)
+        frame.BorderSizePixel = 0
+        frame.Parent = screenGui
+        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
+
+        local text = Instance.new("TextLabel")
+        text.Size = UDim2.new(1, 0, 1, 0)
+        text.BackgroundTransparency = 1
+        text.Text = "You are blacklisted ❌"
+        text.TextColor3 = Color3.fromRGB(255, 100, 100)
+        text.TextScaled = true
+        text.Font = Enum.Font.GothamBold
+        text.Parent = frame
+
+        frame.BackgroundTransparency = 1
+        text.TextTransparency = 1
+
+        local fadeIn = TweenService:Create(frame, TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0})
+        local textFade = TweenService:Create(text, TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0})
+        fadeIn:Play()
+        textFade:Play()
+
+        return
+    end
 end
 -- =================================================
 
@@ -697,6 +730,11 @@ local function selectTab(tabButton, tabName)
                 if vlKeybind and input.KeyCode == vlKeybind then
                     local newState = not getVLState()
                     setVLState(newState)
+                    if newState then
+                        startAutoguardVL()
+                    else
+                        stopAutoguardVL()
+                    end
                 end
             end)
 
