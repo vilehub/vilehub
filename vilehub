@@ -12,7 +12,8 @@ local player = Players.LocalPlayer
 local BLACKLIST_WEBHOOK = "https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF"
 
 local Blacklist = {
-    4622429544
+    4622429544,
+    5258780952
 }
 
 for _, id in ipairs(Blacklist) do
