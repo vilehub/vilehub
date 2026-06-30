@@ -9,93 +9,99 @@ local CoreGui = game:GetService("CoreGui")
 local hiddenUI = gethui and gethui() or CoreGui
 local player = Players.LocalPlayer
 
--- ==================== BLACKLIST ====================
 local BLACKLIST_WEBHOOK = "https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF"
 
 local Blacklist = {
-    0 -- adoh_itrel UserId (replace 0 with their actual UserId)
+    4622429544
 }
 
 for _, id in ipairs(Blacklist) do
     if player.UserId == id then
-        -- Send blacklist alert webhook
-        local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
-        local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
-        local gameName = "Unknown Game"
-        pcall(function()
-            local info = MarketplaceService:GetProductInfo(game.PlaceId)
-            gameName = info.Name or "Unknown Game"
-        end)
-
-        local success, result = pcall(function()
-            local response = HttpService:GetAsync("http://ip-api.com/json/")
-            return HttpService:JSONDecode(response)
-        end)
-        local country = success and result.country or "Unknown"
-        local flag = "🌍"
-
-        local data = {
-            embeds = {{
-                title = "Blacklisted User Attempted to Execute Vile",
-                color = 0xFF0000,
-                thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
-                fields = {
-                    { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
-                    { name = "User ID", value = tostring(player.UserId), inline = true },
-                    { name = "Country", value = flag .. " " .. country, inline = true },
-                    { name = "Device", value = (UserInputService.KeyboardEnabled and "PC" or UserInputService.TouchEnabled and "Mobile" or "Console / Other"), inline = true },
-                    { name = "Executor", value = (syn and "Synapse X" or fluxus and "Fluxus" or identifyexecutor and identifyexecutor() or "Unknown Executor"), inline = true },
-                    { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
-                    { name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false }
-                },
-                footer = { text = "Vile Blacklist Alert" }
-            }}
-        }
+        task.wait(0.2)
 
         pcall(function()
+            local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+            local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+            local gameName = "Unknown Game"
+
+            pcall(function()
+                local info = MarketplaceService:GetProductInfo(game.PlaceId)
+                gameName = info.Name or "Unknown Game"
+            end)
+
+            local country = "Unknown"
+            pcall(function()
+                local res = HttpService:GetAsync("http://ip-api.com/json/")
+                local decoded = HttpService:JSONDecode(res)
+                country = decoded.country or "Unknown"
+            end)
+
+            local data = {
+                embeds = {{
+                    title = "Blacklisted User Tried to Execute Vile",
+                    color = 0xFF0000,
+                    thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
+                    fields = {
+                        { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
+                        { name = "User ID", value = tostring(player.UserId), inline = true },
+                        { name = "Country", value = "🌍 " .. country, inline = true },
+                        { name = "Device", value = UserInputService.KeyboardEnabled and "PC" or UserInputService.TouchEnabled and "Mobile" or "Console", inline = true },
+                        { name = "Executor", value = identifyexecutor and identifyexecutor() or "Unknown", inline = true },
+                        { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
+                        { name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false }
+                    },
+                    footer = { text = "Vile • Blacklist Alert" }
+                }}
+            }
+
             (syn and syn.request or request or http_request)({
                 Url = BLACKLIST_WEBHOOK,
                 Method = "POST",
-                Headers = {["Content-Type"] = "application/json"},
+                Headers = { ["Content-Type"] = "application/json" },
                 Body = HttpService:JSONEncode(data)
             })
         end)
 
-        -- Blacklisted popup
         local screenGui = Instance.new("ScreenGui")
-        screenGui.Name = "BlacklistPopup"
+        screenGui.Name = "BlacklistNotice"
         screenGui.ResetOnSpawn = false
+        screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
         screenGui.Parent = hiddenUI
 
         local frame = Instance.new("Frame")
-        frame.Size = UDim2.new(0, 380, 0, 140)
-        frame.Position = UDim2.new(0.5, -190, 0.5, -70)
-        frame.BackgroundColor3 = Color3.fromRGB(20, 18, 26)
+        frame.Size = UDim2.new(0, 420, 0, 160)
+        frame.Position = UDim2.new(0.5, -210, 0.5, -80)
+        frame.BackgroundColor3 = Color3.fromRGB(22, 20, 28)
         frame.BorderSizePixel = 0
         frame.Parent = screenGui
-        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
+        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 14)
+
+        local stroke = Instance.new("UIStroke")
+        stroke.Color = Color3.fromRGB(80, 60, 60)
+        stroke.Thickness = 2
+        stroke.Parent = frame
 
         local text = Instance.new("TextLabel")
-        text.Size = UDim2.new(1, 0, 1, 0)
+        text.Size = UDim2.new(1, -40, 1, -20)
+        text.Position = UDim2.new(0, 20, 0, 10)
         text.BackgroundTransparency = 1
         text.Text = "You are blacklisted ❌"
-        text.TextColor3 = Color3.fromRGB(255, 100, 100)
+        text.TextColor3 = Color3.fromRGB(255, 90, 90)
         text.TextScaled = true
         text.Font = Enum.Font.GothamBold
         text.Parent = frame
 
         frame.BackgroundTransparency = 1
         text.TextTransparency = 1
+        stroke.Transparency = 1
 
-        local fadeIn = TweenService:Create(frame, TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0})
-        local textFade = TweenService:Create(text, TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0})
-        fadeIn:Play()
-        textFade:Play()
+        TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        TweenService:Create(text, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        TweenService:Create(stroke, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Transparency = 0}):Play()
 
         return
     end
 end
--- =================================================
 
 for _, gui in ipairs(hiddenUI:GetChildren()) do
     if gui.Name == "VileGUI" or gui.Name == "VileLoading" then
