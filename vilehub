@@ -1,0 +1,564 @@
+-- Vile GUI - With Blacklist System (c0.1)
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local CoreGui = game:GetService("CoreGui")
+local hiddenUI = gethui and gethui() or CoreGui
+local player = Players.LocalPlayer
+
+-- ==================== WEBHOOKS ====================
+local EXECUTION_WEBHOOK = "https://discord.com/api/webhooks/1521285961449738392/LpBNwhfByjAV0rtQtxAo3WsjD9yaCLMfBv7vDp6p3KFBn13lYFiLdyiOJ8AbU8EW5cgZ"
+local BLACKLIST_WEBHOOK = "https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF"
+
+-- ==================== BLACKLIST ====================
+local Blacklist = {
+    -- Add UserIds here (blacklisted players)
+    -- Example: 123456789,
+}
+
+-- Check Blacklist
+for _, id in ipairs(Blacklist) do
+    if player.UserId == id then
+        -- Blacklist Alert Webhook
+        local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+        local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+
+        local gameName = "Unknown Game"
+        pcall(function()
+            local info = MarketplaceService:GetProductInfo(game.PlaceId)
+            gameName = info.Name or "Unknown Game"
+        end)
+
+        local data = {
+            embeds = {{
+                title = "Blacklisted User Tried to Execute",
+                color = 0xFF0000,
+                thumbnail = {
+                    url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png"
+                },
+                fields = {
+                    {
+                        name = "Username",
+                        value = "[" .. player.Name .. "](" .. profileLink .. ")",
+                        inline = true
+                    },
+                    {
+                        name = "User ID",
+                        value = tostring(player.UserId),
+                        inline = true
+                    },
+                    {
+                        name = "Game",
+                        value = "[" .. gameName .. "](" .. gameLink .. ")",
+                        inline = false
+                    },
+                    {
+                        name = "Time",
+                        value = os.date("%Y-%m-%d %H:%M:%S"),
+                        inline = false
+                    }
+                },
+                footer = {
+                    text = "Vile Blacklist System"
+                }
+            }}
+        }
+
+        pcall(function()
+            (syn and syn.request or request or http_request)({
+                Url = BLACKLIST_WEBHOOK,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+
+        -- Show Blacklist Screen
+        local blacklistGui = Instance.new("ScreenGui")
+        blacklistGui.Name = "BlacklistUI"
+        blacklistGui.ResetOnSpawn = false
+        blacklistGui.Parent = hiddenUI
+
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0, 320, 0, 320)
+        frame.Position = UDim2.new(0.5, -160, 0.5, -160)
+        frame.BackgroundColor3 = Color3.fromRGB(18, 16, 26)
+        frame.BorderSizePixel = 0
+        frame.Parent = blacklistGui
+
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 12)
+        corner.Parent = frame
+
+        local vileText = Instance.new("TextLabel")
+        vileText.Size = UDim2.new(1, -20, 0, 40)
+        vileText.Position = UDim2.new(0, 15, 0, 15)
+        vileText.BackgroundTransparency = 1
+        vileText.Text = "VILE"
+        vileText.TextColor3 = Color3.fromRGB(255, 255, 255)
+        vileText.TextScaled = true
+        vileText.Font = Enum.Font.GothamBlack
+        vileText.TextXAlignment = Enum.TextXAlignment.Left
+        vileText.Parent = frame
+
+        local message = Instance.new("TextLabel")
+        message.Size = UDim2.new(1, -40, 0, 80)
+        message.Position = UDim2.new(0, 20, 0.5, -60)
+        message.BackgroundTransparency = 1
+        message.Text = "You have been blacklisted from Vile."
+        message.TextColor3 = Color3.fromRGB(255, 100, 100)
+        message.TextScaled = true
+        message.Font = Enum.Font.GothamBold
+        message.TextXAlignment = Enum.TextXAlignment.Center
+        message.Parent = frame
+
+        local xEmoji = Instance.new("TextLabel")
+        xEmoji.Size = UDim2.new(1, 0, 0, 80)
+        xEmoji.Position = UDim2.new(0, 0, 0.5, 30)
+        xEmoji.BackgroundTransparency = 1
+        xEmoji.Text = "❌"
+        xEmoji.TextScaled = true
+        xEmoji.Font = Enum.Font.GothamBold
+        xEmoji.TextXAlignment = Enum.TextXAlignment.Center
+        xEmoji.Parent = frame
+
+        -- Animation
+        frame.Size = UDim2.new(0, 0, 0, 0)
+        frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+        local tween = TweenService:Create(frame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 320, 0, 320),
+            Position = UDim2.new(0.5, -160, 0.5, -160)
+        })
+        tween:Play()
+
+        wait(6)
+        blacklistGui:Destroy()
+        return
+    end
+end
+
+-- ==================== NORMAL SCRIPT ====================
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "VileGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = hiddenUI
+
+local mainColor = Color3.fromRGB(16, 14, 22)
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainWindow"
+mainFrame.Size = UDim2.new(0, 580, 0, 340)
+mainFrame.Position = UDim2.new(0.5, -290, 0.5, -170)
+mainFrame.BackgroundColor3 = mainColor
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Visible = true
+mainFrame.Parent = screenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 6)
+corner.Parent = mainFrame
+
+local topBar = Instance.new("Frame")
+topBar.Size = UDim2.new(1, 0, 0, 42)
+topBar.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
+topBar.BorderSizePixel = 0
+topBar.Parent = mainFrame
+
+local topCorner = Instance.new("UICorner")
+topCorner.CornerRadius = UDim.new(0, 6)
+topCorner.Parent = topBar
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -80, 1, 0)
+title.Position = UDim2.new(0, 14, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "VILE"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextScaled = true
+title.Font = Enum.Font.GothamBlack
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = topBar
+
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 22, 0, 22)
+closeButton.Position = UDim2.new(1, -28, 0, 10)
+closeButton.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
+closeButton.BorderSizePixel = 0
+closeButton.Text = "×"
+closeButton.TextColor3 = Color3.fromRGB(210, 200, 255)
+closeButton.TextScaled = true
+closeButton.Font = Enum.Font.GothamBold
+closeButton.Parent = topBar
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 4)
+closeCorner.Parent = closeButton
+
+closeButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false
+end)
+
+-- Normal Execution Webhook
+local function logToDiscord()
+    local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+    local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+
+    local gameName = "Unknown Game"
+    pcall(function()
+        local info = MarketplaceService:GetProductInfo(game.PlaceId)
+        gameName = info.Name or "Unknown Game"
+    end)
+
+    local data = {
+        embeds = {{
+            title = "Vile Script Executed",
+            color = 0x7850C8,
+            thumbnail = {
+                url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png"
+            },
+            fields = {
+                {
+                    name = "Username",
+                    value = "[" .. player.Name .. "](" .. profileLink .. ")",
+                    inline = true
+                },
+                {
+                    name = "User ID",
+                    value = tostring(player.UserId),
+                    inline = true
+                },
+                {
+                    name = "Account Age",
+                    value = player.AccountAge .. " days",
+                    inline = true
+                },
+                {
+                    name = "Game",
+                    value = "[" .. gameName .. "](" .. gameLink .. ")",
+                    inline = false
+                },
+                {
+                    name = "Time",
+                    value = os.date("%Y-%m-%d %H:%M:%S"),
+                    inline = false
+                }
+            },
+            footer = {
+                text = "Vile Executor • " .. os.date("%Y-%m-%d")
+            }
+        }}
+    }
+
+    pcall(function()
+        (syn and syn.request or request or http_request)({
+            Url = EXECUTION_WEBHOOK,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode(data)
+        })
+    end)
+end
+
+task.spawn(logToDiscord)
+
+-- Sidebar
+local sidebar = Instance.new("Frame")
+sidebar.Size = UDim2.new(0, 120, 1, -42)
+sidebar.Position = UDim2.new(0, 0, 0, 42)
+sidebar.BackgroundColor3 = mainColor
+sidebar.BorderSizePixel = 0
+sidebar.Parent = mainFrame
+
+local tabData = {"Home", "Autoguard", "Misc", "Settings"}
+
+local contentFrame = Instance.new("Frame")
+contentFrame.Size = UDim2.new(1, -120, 1, -42)
+contentFrame.Position = UDim2.new(0, 120, 0, 42)
+contentFrame.BackgroundColor3 = mainColor
+contentFrame.Parent = mainFrame
+
+local sessionStart = tick()
+
+-- Keybind System
+local currentKeybind = Enum.KeyCode.RightShift
+local changingKeybind = false
+
+local function selectTab(tabButton, tabName)
+    for _, child in ipairs(sidebar:GetChildren()) do
+        if child:IsA("TextButton") then
+            child.BackgroundColor3 = mainColor
+        end
+    end
+    tabButton.BackgroundColor3 = Color3.fromRGB(28, 25, 38)
+
+    local fadeOut = TweenService:Create(contentFrame, TweenInfo.new(0.12), {
+        BackgroundTransparency = 1
+    })
+    fadeOut:Play()
+
+    fadeOut.Completed:Connect(function()
+        for _, child in ipairs(contentFrame:GetChildren()) do
+            child:Destroy()
+        end
+
+        if tabName == "Home" then
+            -- Avatar
+            local avatar = Instance.new("ImageLabel")
+            avatar.Size = UDim2.new(0, 72, 0, 72)
+            avatar.Position = UDim2.new(1, -85, 0, 10)
+            avatar.BackgroundTransparency = 1
+            avatar.Image = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size150x150)
+            avatar.Parent = contentFrame
+
+            local avatarCorner = Instance.new("UICorner")
+            avatarCorner.CornerRadius = UDim.new(1, 0)
+            avatarCorner.Parent = avatar
+
+            local welcome = Instance.new("TextLabel")
+            welcome.Size = UDim2.new(0, 200, 0, 30)
+            welcome.Position = UDim2.new(0, 14, 0, 12)
+            welcome.BackgroundTransparency = 1
+            welcome.Text = "Welcome back,"
+            welcome.TextColor3 = Color3.fromRGB(200, 200, 200)
+            welcome.TextScaled = true
+            welcome.Font = Enum.Font.Gotham
+            welcome.TextXAlignment = Enum.TextXAlignment.Left
+            welcome.Parent = contentFrame
+
+            local usernameLabel = Instance.new("TextLabel")
+            usernameLabel.Size = UDim2.new(0, 200, 0, 34)
+            usernameLabel.Position = UDim2.new(0, 14, 0, 40)
+            usernameLabel.BackgroundTransparency = 1
+            usernameLabel.Text = player.Name
+            usernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            usernameLabel.TextScaled = true
+            usernameLabel.Font = Enum.Font.GothamBold
+            usernameLabel.TextXAlignment = Enum.TextXAlignment.Left
+            usernameLabel.Parent = contentFrame
+
+            -- Session Time Box
+            local timeBox = Instance.new("Frame")
+            timeBox.Size = UDim2.new(0, 170, 0, 48)
+            timeBox.Position = UDim2.new(1, -184, 1, -112)
+            timeBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            timeBox.Parent = contentFrame
+
+            local timeBoxCorner = Instance.new("UICorner")
+            timeBoxCorner.CornerRadius = UDim.new(0, 6)
+            timeBoxCorner.Parent = timeBox
+
+            local timeTitle = Instance.new("TextLabel")
+            timeTitle.Size = UDim2.new(1, 0, 0, 18)
+            timeTitle.Position = UDim2.new(0, 0, 0, 4)
+            timeTitle.BackgroundTransparency = 1
+            timeTitle.Text = "Session time"
+            timeTitle.TextColor3 = Color3.fromRGB(170, 170, 170)
+            timeTitle.TextScaled = true
+            timeTitle.Font = Enum.Font.Gotham
+            timeTitle.TextXAlignment = Enum.TextXAlignment.Center
+            timeTitle.Parent = timeBox
+
+            local timeValue = Instance.new("TextLabel")
+            timeValue.Size = UDim2.new(1, 0, 0, 24)
+            timeValue.Position = UDim2.new(0, 0, 0, 22)
+            timeValue.BackgroundTransparency = 1
+            timeValue.Text = "calculating..."
+            timeValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            timeValue.TextScaled = true
+            timeValue.Font = Enum.Font.GothamBold
+            timeValue.TextXAlignment = Enum.TextXAlignment.Center
+            timeValue.Parent = timeBox
+
+            spawn(function()
+                while timeValue.Parent do
+                    local elapsed = math.floor(tick() - sessionStart)
+                    local minutes = math.floor(elapsed / 60)
+                    local seconds = elapsed % 60
+                    timeValue.Text = string.format("%dm %ds", minutes, seconds)
+                    wait(1)
+                end
+            end)
+
+            -- Account Age Box
+            local ageBox = Instance.new("Frame")
+            ageBox.Size = UDim2.new(0, 170, 0, 48)
+            ageBox.Position = UDim2.new(1, -184, 1, -58)
+            ageBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            ageBox.Parent = contentFrame
+
+            local ageBoxCorner = Instance.new("UICorner")
+            ageBoxCorner.CornerRadius = UDim.new(0, 6)
+            ageBoxCorner.Parent = ageBox
+
+            local ageTitle = Instance.new("TextLabel")
+            ageTitle.Size = UDim2.new(1, 0, 0, 18)
+            ageTitle.Position = UDim2.new(0, 0, 0, 4)
+            ageTitle.BackgroundTransparency = 1
+            ageTitle.Text = "Account Age"
+            ageTitle.TextColor3 = Color3.fromRGB(170, 170, 170)
+            ageTitle.TextScaled = true
+            ageTitle.Font = Enum.Font.Gotham
+            ageTitle.TextXAlignment = Enum.TextXAlignment.Center
+            ageTitle.Parent = ageBox
+
+            local ageValue = Instance.new("TextLabel")
+            ageValue.Size = UDim2.new(1, 0, 0, 24)
+            ageValue.Position = UDim2.new(0, 0, 0, 22)
+            ageValue.BackgroundTransparency = 1
+            ageValue.Text = player.AccountAge .. " days"
+            ageValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ageValue.TextScaled = true
+            ageValue.Font = Enum.Font.GothamBold
+            ageValue.TextXAlignment = Enum.TextXAlignment.Center
+            ageValue.Parent = ageBox
+
+            -- Uninject Button
+            local uninjectButton = Instance.new("TextButton")
+            uninjectButton.Size = UDim2.new(0, 110, 0, 32)
+            uninjectButton.Position = UDim2.new(0, 14, 1, -36)
+            uninjectButton.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            uninjectButton.Text = "Uninject"
+            uninjectButton.TextColor3 = Color3.fromRGB(255, 180, 180)
+            uninjectButton.TextScaled = true
+            uninjectButton.Font = Enum.Font.GothamBold
+            uninjectButton.Parent = contentFrame
+
+            local uninjectCorner = Instance.new("UICorner")
+            uninjectCorner.CornerRadius = UDim.new(0, 6)
+            uninjectCorner.Parent = uninjectButton
+
+            uninjectButton.MouseButton1Click:Connect(function()
+                mainFrame:Destroy()
+            end)
+
+        elseif tabName == "Settings" then
+            local settingsHeader = Instance.new("TextLabel")
+            settingsHeader.Size = UDim2.new(1, -30, 0, 28)
+            settingsHeader.Position = UDim2.new(0, 15, 0, 12)
+            settingsHeader.BackgroundTransparency = 1
+            settingsHeader.Text = "Keybinds"
+            settingsHeader.TextColor3 = Color3.fromRGB(180, 180, 180)
+            settingsHeader.TextScaled = true
+            settingsHeader.Font = Enum.Font.GothamBold
+            settingsHeader.TextXAlignment = Enum.TextXAlignment.Left
+            settingsHeader.Parent = contentFrame
+
+            local keybindRow = Instance.new("Frame")
+            keybindRow.Size = UDim2.new(1, -30, 0, 42)
+            keybindRow.Position = UDim2.new(0, 15, 0, 48)
+            keybindRow.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            keybindRow.Parent = contentFrame
+
+            local rowCorner = Instance.new("UICorner")
+            rowCorner.CornerRadius = UDim.new(0, 6)
+            rowCorner.Parent = keybindRow
+
+            local keybindLabel = Instance.new("TextLabel")
+            keybindLabel.Size = UDim2.new(0.6, 0, 1, 0)
+            keybindLabel.Position = UDim2.new(0, 12, 0, 0)
+            keybindLabel.BackgroundTransparency = 1
+            keybindLabel.Text = "Menu Toggle keybind"
+            keybindLabel.TextColor3 = Color3.fromRGB(210, 210, 210)
+            keybindLabel.TextScaled = true
+            keybindLabel.Font = Enum.Font.Gotham
+            keybindLabel.TextXAlignment = Enum.TextXAlignment.Left
+            keybindLabel.TextYAlignment = Enum.TextYAlignment.Center
+            keybindLabel.Parent = keybindRow
+
+            local keybindButton = Instance.new("TextButton")
+            keybindButton.Size = UDim2.new(0, 110, 0, 30)
+            keybindButton.Position = UDim2.new(1, -122, 0.5, -15)
+            keybindButton.BackgroundColor3 = Color3.fromRGB(35, 32, 45)
+            keybindButton.Text = currentKeybind.Name
+            keybindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            keybindButton.TextScaled = true
+            keybindButton.Font = Enum.Font.Gotham
+            keybindButton.Parent = keybindRow
+
+            local btnCorner = Instance.new("UICorner")
+            btnCorner.CornerRadius = UDim.new(0, 5)
+            btnCorner.Parent = keybindButton
+
+            keybindButton.MouseButton1Click:Connect(function()
+                if changingKeybind then return end
+                changingKeybind = true
+                keybindButton.Text = "Press key..."
+
+                local connection
+                connection = UserInputService.InputBegan:Connect(function(input, gameProcessed)
+                    if gameProcessed then return end
+                    if input.KeyCode ~= Enum.KeyCode.Unknown then
+                        currentKeybind = input.KeyCode
+                        keybindButton.Text = currentKeybind.Name
+                        changingKeybind = false
+                        connection:Disconnect()
+                    end
+                end)
+            end)
+        end
+
+        local fadeIn = TweenService:Create(contentFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            BackgroundTransparency = 0
+        })
+        fadeIn:Play()
+    end)
+end
+
+-- Create Tabs
+for i, tabName in ipairs(tabData) do
+    local tab = Instance.new("TextButton")
+    tab.Name = tabName
+    tab.Size = UDim2.new(1, -6, 0, 32)
+    tab.Position = UDim2.new(0, 3, 0, 38 + (i-1)*36)
+    tab.BackgroundColor3 = mainColor
+    tab.Text = tabName
+    tab.TextColor3 = Color3.fromRGB(200, 200, 200)
+    tab.TextScaled = true
+    tab.Font = Enum.Font.Gotham
+    tab.TextXAlignment = Enum.TextXAlignment.Left
+    tab.Parent = sidebar
+
+    local tabCorner = Instance.new("UICorner")
+    tabCorner.CornerRadius = UDim.new(0, 5)
+    tabCorner.Parent = tab
+
+    tab.MouseButton1Click:Connect(function()
+        local tween = TweenService:Create(tab, TweenInfo.new(0.06), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)})
+        tween:Play()
+        tween.Completed:Connect(function()
+            selectTab(tab, tabName)
+        end)
+    end)
+end
+
+-- Version Text
+local versionLabel = Instance.new("TextLabel")
+versionLabel.Size = UDim2.new(0, 60, 0, 18)
+versionLabel.Position = UDim2.new(0, 12, 1, -22)
+versionLabel.BackgroundTransparency = 1
+versionLabel.Text = "c0.1"
+versionLabel.TextColor3 = Color3.fromRGB(120, 120, 130)
+versionLabel.TextScaled = true
+versionLabel.Font = Enum.Font.Gotham
+versionLabel.TextXAlignment = Enum.TextXAlignment.Left
+versionLabel.Parent = mainFrame
+
+-- Keybind Toggle
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == currentKeybind then
+        mainFrame.Visible = not mainFrame.Visible
+    end
+end)
+
+task.wait(0.2)
+local homeBtn = sidebar:FindFirstChild("Home")
+if homeBtn then
+    selectTab(homeBtn, "Home")
+end
