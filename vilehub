@@ -1,12 +1,1057 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local RunService = game:GetService("RunService")
 
-]]--
+local CoreGui = game:GetService("CoreGui")
+local hiddenUI = gethui and gethui() or CoreGui
+local player = Players.LocalPlayer
 
-local v0=game:GetService("UserInputService");local v1=game:GetService("TweenService");local v2=game:GetService("Players");local v3=game:GetService("HttpService");local v4=game:GetService("MarketplaceService");local v5=game:GetService("RunService");local v6=game:GetService("CoreGui");local v7=(gethui and gethui()) or v6 ;local v8=v2.LocalPlayer;local v9="https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF";local v10={};for v145,v146 in ipairs(v10) do if (v8.UserId==v146) then task.wait(1857.2 -(1092 + 765) );pcall(function() local v299=0 + 0 ;local v300;local v301;local v302;local v303;local v304;while true do if (v299==(1 + 2)) then v304={embeds={{title="Blacklisted User Tried to Execute Vile",color=16711694 -(9 + 5) ,thumbnail={url="https://www.roblox.com/headshot-thumbnail/image?userId="   .. v8.UserId   .. "&width=150&height=150&format=png" },fields={{name="Username",value="["   .. v8.Name   .. "]("   .. v300   .. ")" ,inline=true},{name="User ID",value=tostring(v8.UserId),inline=true},{name="Country",value="🌍 "   .. v303 ,inline=true},{name="Device",value=(v0.KeyboardEnabled and "PC") or (v0.TouchEnabled and "Mobile") or "Console" ,inline=true},{name="Executor",value=(identifyexecutor and identifyexecutor()) or "Unknown" ,inline=true},{name="Game",value="["   .. v302   .. "]("   .. v301   .. ")" ,inline=false},{name="Time",value=os.date("%Y-%m-%d %H:%M:%S"),inline=false}},footer={text="Vile • Blacklist Alert"}}}};((syn and syn.request) or request or http_request)({Url=v9,Method="POST",Headers={["Content-Type"]="application/json"},Body=v3:JSONEncode(v304)});break;end if (v299==(1930 -(1869 + 61))) then v300="https://www.roblox.com/users/"   .. v8.UserId   .. "/profile" ;v301="https://www.roblox.com/games/"   .. game.PlaceId ;v299=1 + 0 ;end if (v299==(6 -4)) then v303="Unknown";pcall(function() local v500=0 -0 ;local v501;local v502;while true do if (v500==(0 + 0)) then v501=v3:GetAsync("http://ip-api.com/json/");v502=v3:JSONDecode(v501);v500=1 -0 ;end if (v500==(1136 -(832 + 303))) then v303=v502.country or "Unknown" ;break;end end end);v299=3 + 0 ;end if (v299==(1475 -(1329 + 145))) then v302="Unknown Game";pcall(function() local v503=0;local v504;while true do if (v503==(946 -(88 + 858))) then v504=v4:GetProductInfo(game.PlaceId);v302=v504.Name or "Unknown Game" ;break;end end end);v299=973 -(140 + 831) ;end end end);local v256=Instance.new("ScreenGui");v256.Name="BlacklistNotice";v256.ResetOnSpawn=false;v256.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;v256.Parent=v7;local v262=Instance.new("Frame");v262.Size=UDim2.new(1850 -(1409 + 441) ,1138 -(15 + 703) ,0 + 0 ,608 -(262 + 176) );v262.Position=UDim2.new(1721.5 -(345 + 1376) , -(898 -(198 + 490)),0.5 -0 , -(203 -118));v262.BackgroundColor3=Color3.fromRGB(1228 -(696 + 510) ,41 -21 ,1101 -(1036 + 37) );v262.BorderSizePixel=1262 -(1091 + 171) ;v262.Parent=v256;Instance.new("UICorner",v262).CornerRadius=UDim.new(0 + 0 ,14);local v269=Instance.new("UIStroke");v269.Color=Color3.fromRGB(251 -171 ,198 -138 ,973 -(910 + 3) );v269.Thickness=376 -(123 + 251) ;v269.Parent=v262;local v273=Instance.new("TextLabel");v273.Size=UDim2.new(1685 -(1466 + 218) , -(19 + 21),0 -0 ,778 -(208 + 490) );v273.Position=UDim2.new(0 + 0 ,828 -(329 + 479) ,0,874 -(174 + 680) );v273.BackgroundTransparency=1;v273.Text="You are blacklisted ❌";v273.TextColor3=Color3.fromRGB(876 -621 ,8 + 82 ,65 + 25 );v273.TextScaled=true;v273.Font=Enum.Font.GothamBold;v273.Parent=v262;local v283=Instance.new("TextLabel");v283.Size=UDim2.new(740 -(396 + 343) ,0 + 0 ,0 + 0 ,1507 -(29 + 1448) );v283.Position=UDim2.new(836 -(660 + 176) ,0,1 + 0 , -(237 -(14 + 188)));v283.BackgroundTransparency=676 -(534 + 141) ;v283.Text="VILE";v283.TextColor3=Color3.fromRGB(41 + 59 ,80 + 10 ,125 + 5 );v283.TextScaled=true;v283.Font=Enum.Font.GothamBlack;v283.Parent=v262;v262.BackgroundTransparency=3 -2 ;v273.TextTransparency=1 -0 ;v269.Transparency=1 -0 ;v283.TextTransparency=2 -1 ;v1:Create(v262,TweenInfo.new(0.5 + 0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency=0 + 0 }):Play();v1:Create(v273,TweenInfo.new(396.5 -(115 + 281) ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency=0}):Play();v1:Create(v269,TweenInfo.new(1527.5 -(389 + 1138) ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency=0 -0 }):Play();v1:Create(v283,TweenInfo.new(0.5 + 0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency=0 -0 }):Play();return;end end for v147,v148 in ipairs(v7:GetChildren()) do if ((v148.Name=="VileGUI") or (v148.Name=="VileLoading")) then v148:Destroy();end end local v11=v8;local v12=nil;local v13=false;local v14=tick();local v15=3.35 -2 ;local v16=882 -(550 + 317) ;local v17=2 -0 ;local v18=nil;local v19=Vector3.new(0,0 + 0 ,0 -0 );local v20=85;local v21="https://discord.com/api/webhooks/1521285961449738392/LpBNwhfByjAV0rtQtxAo3WsjD9yaCLMfBv7vDp6p3KFBn13lYFiLdyiOJ8AbU8EW5cgZ";local v22="https://discord.com/api/webhooks/1521634349546733629/MdGuZL7yv-XC0QjOM1QwRtMoUIbo67Uggxl87EsxAdotYfhQY0X-kwxQOrtnMSxyXdof";local function v23() local v149=v11.Character;if ( not v149 or  not v149:FindFirstChild("HumanoidRootPart")) then return nil,math.huge;end local v150=v149.HumanoidRootPart;local v151=nil;local v152=math.huge;for v225,v226 in ipairs(v2:GetPlayers()) do if ((v226~=v11) and v226.Character and v226.Character:FindFirstChild("HumanoidRootPart")) then local v305=0 -0 ;local v306;local v307;while true do if (v305==(285 -(134 + 151))) then v306=v226.Character.HumanoidRootPart;v307=(v306.Position-v150.Position).Magnitude;v305=1;end if (v305==(1666 -(970 + 695))) then if (v307<v152) then v152=v307;v151=v226;end break;end end end end return v151,v152;end local function v24() if v12 then v12:Disconnect();end v13=true;v18=nil;v19=Vector3.new(0 -0 ,1990 -(582 + 1408) ,0);v12=v5.Heartbeat:Connect(function(v227) local v228=v11.Character;if ( not v228 or  not v228:FindFirstChild("Humanoid") or  not v228:FindFirstChild("HumanoidRootPart")) then v18=nil;v19=Vector3.new(0 -0 ,0 -0 ,1859 -(821 + 1038) );return;end local v229,v230=v23();if ( not v229 or  not v229.Character) then local v308=0 -0 ;while true do if ((1825 -(1195 + 629))==v308) then return;end if (v308==(0 -0)) then v18=nil;v19=Vector3.new(241 -(187 + 54) ,0,0 + 0 );v308=781 -(162 + 618) ;end end end local v231=v229.Character;local v232=v228.Humanoid;local v233=v228.HumanoidRootPart;local v234=v231:FindFirstChild("HumanoidRootPart");if  not v234 then local v309=0 + 0 ;while true do if (v309==(0 + 0)) then v18=nil;v19=Vector3.new(0 -0 ,0 -0 ,1026 -(834 + 192) );v309=1 + 0 ;end if (v309==(1 + 0)) then return;end end end local v235=v234.Position;local v236=Vector3.new(1636 -(1373 + 263) ,1000 -(451 + 549) ,0 -0 );if (v18 and (v227>(304 -(300 + 4)))) then local v310=0 + 0 ;local v311;while true do if (v310==(1 -0)) then v236=v19;if (v236.Magnitude>v20) then v236=v236.Unit * v20 ;end break;end if ((0 -0)==v310) then v311=(v235-v18)/v227 ;v19=(v19 * (1384.65 -(746 + 638))) + (v311 * (0.35 + 0)) ;v310=1;end end end v18=v235;local v237;if (v230<=v16) then v237=v235 + (v236 * v15) ;v237=v237 + Vector3.new(math.random( -v17,v17),0 + 0 ,math.random( -v17,v17)) ;else v237=v235 + Vector3.new(math.random( -(0.8 -0),0.8),0,math.random( -(341.8 -(218 + 123)),1581.8 -(1535 + 46) )) ;end v232:MoveTo(v237);end);end local function v25() local v153=0 + 0 ;while true do if (v153==(0 + 0)) then if v12 then local v357=0 + 0 ;while true do if (v357==0) then v12:Disconnect();v12=nil;break;end end end v13=false;v153=561 -(306 + 254) ;end if (v153==(2 -1)) then v18=nil;v19=Vector3.new(0 + 0 ,0 -0 ,1467 -(899 + 568) );break;end end end local function v26() local v154=0 + 0 ;local v155;while true do if (v154==(0 -0)) then v155=math.floor(tick() -v14 );return string.format("%dm %ds",math.floor(v155/(663 -(268 + 335)) ),v155%(1966 -(1665 + 241)) );end end end local function v27() local v156=717 -(373 + 344) ;local v157;local v158;local v159;local v160;local v161;local v162;local v163;local v164;while true do if (v156==2) then v160,v161=pcall(function() local v348=v3:GetAsync("http://ip-api.com/json/");return v3:JSONDecode(v348);end);v162=(v160 and v161.country) or "Unknown" ;v156=293 -(60 + 230) ;end if (v156==(572 -(426 + 146))) then v157="https://www.roblox.com/users/"   .. v8.UserId   .. "/profile" ;v158="https://www.roblox.com/games/"   .. game.PlaceId ;v156=1 + 0 ;end if (v156==(2 + 2)) then pcall(function() ((syn and syn.request) or request or http_request)({Url=v22,Method="POST",Headers={["Content-Type"]="application/json"},Body=v3:JSONEncode(v164)});end);break;end if (v156==(2 -1)) then v159="Unknown Game";pcall(function() local v349=v4:GetProductInfo(game.PlaceId);v159=v349.Name or "Unknown Game" ;end);v156=2;end if (v156==(1459 -(282 + 1174))) then v163="🌍";v164={embeds={{title="Vile Script Uninjected",color=48202504 -31468979 ,thumbnail={url="https://www.roblox.com/headshot-thumbnail/image?userId="   .. v8.UserId   .. "&width=150&height=150&format=png" },fields={{name="Username",value="["   .. v8.Name   .. "]("   .. v157   .. ")" ,inline=true},{name="User ID",value=tostring(v8.UserId),inline=true},{name="Country",value=v163   .. " "   .. v162 ,inline=true},{name="Game",value="["   .. v159   .. "]("   .. v158   .. ")" ,inline=false},{name="Session Duration",value=v26(),inline=true},{name="Time Uninjected",value=os.date("%Y-%m-%d %H:%M:%S"),inline=true}},footer={text="Vile Executor • Uninjected"}}}};v156=4;end end end local function v28() task.spawn(function() local v238=700 -(271 + 429) ;while true do if (v238==(0 + 0)) then pcall(v27);v25();v238=1 + 0 ;end if (v238==(1501 -(1408 + 92))) then task.wait(1086.15 -(461 + 625) );pcall(function() local v358=0 + 0 ;while true do if (v358==(221 -(55 + 166))) then if mainFrame then mainFrame.Visible=false;end if screenGui then screenGui:Destroy();end v358=1289 -(993 + 295) ;end if (v358==(1 + 0)) then if loadingGui then loadingGui:Destroy();end for v667,v668 in ipairs(v7:GetChildren()) do if ((v668.Name=="VileGUI") or (v668.Name=="VileLoading")) then v668:Destroy();end end break;end end end);break;end end end);end local v29=Instance.new("ScreenGui");v29.Name="VileGUI";v29.ResetOnSpawn=false;v29.Parent=v7;local v33=Color3.fromRGB(1187 -(418 + 753) ,311 -(36 + 261) ,22);local v34=Instance.new("Frame");v34.Name="MainWindow";v34.Size=UDim2.new(0,221 + 359 ,0 -0 ,1708 -(34 + 1334) );v34.Position=UDim2.new(0.5 + 0 , -(112 + 178),0.5 + 0 , -170);v34.BackgroundColor3=v33;v34.BorderSizePixel=0;v34.Active=true;v34.Draggable=true;v34.Visible=false;v34.Parent=v29;Instance.new("UICorner",v34).CornerRadius=UDim.new(1283 -(1035 + 248) ,29 -(20 + 1) );local v45=Instance.new("Frame");v45.Size=UDim2.new(1 + 0 ,319 -(134 + 185) ,0,1175 -(549 + 584) );v45.BackgroundColor3=Color3.fromRGB(4 + 8 ,539 -(406 + 123) ,1787 -(1749 + 20) );v45.BorderSizePixel=0 + 0 ;v45.Parent=v34;Instance.new("UICorner",v45).CornerRadius=UDim.new(0 + 0 ,8);local v51=Instance.new("TextLabel");v51.Size=UDim2.new(1173 -(786 + 386) , -(259 -179),1323 -(1249 + 73) ,0 + 0 );v51.Position=UDim2.new(1145 -(466 + 679) ,33 -19 ,0 -0 ,0 -0 );v51.BackgroundTransparency=1901 -(106 + 1794) ;v51.Text="VILE";v51.TextColor3=Color3.fromRGB(255,81 + 174 ,65 + 190 );v51.TextScaled=true;v51.Font=Enum.Font.GothamBlack;v51.TextXAlignment=Enum.TextXAlignment.Left;v51.Parent=v45;local v63=Instance.new("TextButton");v63.Size=UDim2.new(0 -0 ,55 -33 ,0,8 + 14 );v63.Position=UDim2.new(2 -1 , -(75 -47),114 -(4 + 110) ,25 -15 );v63.BackgroundColor3=Color3.fromRGB(596 -(57 + 527) ,1437 -(41 + 1386) ,18);v63.BorderSizePixel=0;v63.Text="×";v63.TextColor3=Color3.fromRGB(313 -(17 + 86) ,136 + 64 ,568 -313 );v63.TextScaled=true;v63.Font=Enum.Font.GothamBold;v63.Parent=v45;Instance.new("UICorner",v63).CornerRadius=UDim.new(0 -0 ,17 -11 );v63.MouseButton1Click:Connect(function() v34.Visible=false;end);local v75=Instance.new("ScreenGui");v75.Name="VileLoading";v75.ResetOnSpawn=false;v75.Parent=v7;local v79=Instance.new("Frame");v79.Size=UDim2.new(0 -0 ,1748 -(1249 + 19) ,166 -(122 + 44) ,260);v79.Position=UDim2.new(0.5 -0 , -(796 -556),0.5 + 0 , -(359 -(73 + 156)));v79.BackgroundColor3=Color3.fromRGB(3 + 15 ,827 -(721 + 90) ,48 -24 );v79.BorderSizePixel=0 -0 ;v79.Parent=v75;Instance.new("UICorner",v79).CornerRadius=UDim.new(65 -(30 + 35) ,11 + 5 );local v86=Instance.new("TextLabel");v86.Size=UDim2.new(1 -0 ,1257 -(1043 + 214) ,0 -0 ,60);v86.Position=UDim2.new(1212 -(323 + 889) ,0,0 + 0 ,80 -50 );v86.BackgroundTransparency=1;v86.Text="VILE";v86.TextColor3=Color3.fromRGB(835 -(361 + 219) ,575 -(53 + 267) ,58 + 197 );v86.TextScaled=true;v86.Font=Enum.Font.GothamBlack;v86.Parent=v79;local v95=33 -23 ;local v96={};local v97=443 -(15 + 398) ;local v98=Vector2.new(753 -(203 + 310) ,1127 -(18 + 964) );for v166=3 -2 ,v95 do local v167=Instance.new("Frame");v167.Size=UDim2.new(1993 -(1238 + 755) ,1 + 8 ,0 + 0 ,6 + 3 );v167.BackgroundColor3=Color3.fromRGB(995 -(20 + 830) ,137 -42 ,200 + 55 );v167.BorderSizePixel=0 -0 ;v167.Parent=v79;Instance.new("UICorner",v167).CornerRadius=UDim.new(127 -(116 + 10) ,0 + 0 );v96[v166]=v167;end local v99=738 -(542 + 196) ;v5.Heartbeat:Connect(function(v174) if  not v79.Parent then return;end v99=v99 + (v174 * (6.2 -4)) ;for v239,v240 in ipairs(v96) do local v241=v99 + (v239 * ((math.pi * (3 -1))/v95)) ;local v242=v98.X + (math.cos(v241) * v97) ;local v243=v98.Y + (math.sin(v241) * v97) ;v240.Position=UDim2.new(0 + 0 ,v242-(2.5 + 2) ,1486 -(35 + 1451) ,v243-(3.5 + 1) );local v245=(math.sin(v241) * (1453.5 -(28 + 1425))) + 0.5 + 0 ;v240.BackgroundTransparency=(0.2 -0) + (v245 * (0.7 -0)) ;end end);local v100=Instance.new("TextLabel");v100.Size=UDim2.new(1 -0 , -60,1551 -(1126 + 425) ,15 + 15 );v100.Position=UDim2.new(297 -(45 + 252) ,435 -(118 + 287) ,3 -2 , -(1171 -(118 + 1003)));v100.BackgroundTransparency=2 -1 ;v100.TextColor3=Color3.fromRGB(547 -(142 + 235) ,748 -583 ,115 + 65 );v100.TextScaled=true;v100.Font=Enum.Font.Gotham;v100.Parent=v79;local v109={"Initializing systems...","For any bugs encountered add @vilehub on discord","Loading interface..."};spawn(function() local v175=1 + 0 ;while v79.Parent do local v247=0 + 0 ;while true do if (v247==(0 + 0)) then v100.Text=v109[v175];v175=v175 + 1 + 0 ;v247=1;end if (v247==(1 + 0)) then if (v175> #v109) then v175=2 -1 ;end wait(5.8 -3 );break;end end end end);task.wait(4.8 + 1 );local v110=TweenInfo.new(0.7 -0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out);v1:Create(v79,v110,{BackgroundTransparency=1231 -(957 + 273) }):Play();v1:Create(v86,v110,{TextTransparency=1 + 0 }):Play();v1:Create(v100,v110,{TextTransparency=1 + 0 }):Play();for v176,v177 in ipairs(v96) do v1:Create(v177,v110,{BackgroundTransparency=4 -3 }):Play();end task.wait(753.8 -(239 + 514) );v75:Destroy();v34.Visible=true;local function v111() if v0.KeyboardEnabled then return "PC";elseif v0.TouchEnabled then return "Mobile";else return "Console / Other";end end local function v112() if syn then return "Synapse X";elseif fluxus then return "Fluxus";elseif identifyexecutor then return identifyexecutor();else return "Unknown Executor";end end local function v113() local v178,v179=pcall(function() local v248=0 + 0 ;local v249;while true do if (v248==(0 -0)) then v249=v3:GetAsync("http://ip-api.com/json/");return v3:JSONDecode(v249);end end end);if v178 then return v179.country or "Unknown" ,"🌍";else return "Unknown","🌍";end end local function v114() local v180="https://www.roblox.com/users/"   .. v8.UserId   .. "/profile" ;local v181="https://www.roblox.com/games/"   .. game.PlaceId ;local v182="Unknown Game";pcall(function() local v250=v4:GetProductInfo(game.PlaceId);v182=v250.Name or "Unknown Game" ;end);local v183,v184=v113();local v185={embeds={{title="Vile Script Executed",color=5729363 + 2155637 ,thumbnail={url="https://www.roblox.com/headshot-thumbnail/image?userId="   .. v8.UserId   .. "&width=150&height=150&format=png" },fields={{name="Username",value="["   .. v8.Name   .. "]("   .. v180   .. ")" ,inline=true},{name="User ID",value=tostring(v8.UserId),inline=true},{name="Country",value=v184   .. " "   .. v183 ,inline=true},{name="Device",value=v111(),inline=true},{name="Executor",value=v112(),inline=true},{name="Account Age",value=v8.AccountAge   .. " days" ,inline=true},{name="Game",value="["   .. v182   .. "]("   .. v181   .. ")" ,inline=false},{name="Time",value=os.date("%Y-%m-%d %H:%M:%S"),inline=false}},footer={text="Vile Executor • "   .. os.date("%Y-%m-%d") }}}};pcall(function() ((syn and syn.request) or request or http_request)({Url=v21,Method="POST",Headers={["Content-Type"]="application/json"},Body=v3:JSONEncode(v185)});end);end task.spawn(v114);local v115=Instance.new("Frame");v115.Size=UDim2.new(1202 -(373 + 829) ,851 -(476 + 255) ,1131 -(369 + 761) , -42);v115.Position=UDim2.new(0 + 0 ,0 -0 ,1212 -(1090 + 122) ,79 -37 );v115.BackgroundColor3=v33;v115.BorderSizePixel=238 -(64 + 174) ;v115.Parent=v34;local v121={"Home","VilEX","Misc","Settings"};local v122=Instance.new("Frame");v122.Size=UDim2.new(337 -(144 + 192) , -(336 -(42 + 174)),1 + 0 , -(35 + 7));v122.Position=UDim2.new(0,51 + 69 ,0,1546 -(363 + 1141) );v122.BackgroundColor3=v33;v122.Parent=v34;local v127=Enum.KeyCode.RightShift;local v128=false;local v129=nil;local v130=nil;local function v131(v186,v187,v188) local v189=774 -(431 + 343) ;local v190;local v191;local v192;local v193;while true do if ((0 -0)==v189) then v190=Instance.new("Frame");v190.Size=UDim2.new(1580 -(1183 + 397) ,38 + 10 ,0 -0 ,1721 -(556 + 1139) );v190.Position=v187;v189=1 + 0 ;end if ((4 + 1)==v189) then v190.InputBegan:Connect(function(v352) if (v352.UserInputType==Enum.UserInputType.MouseButton1) then v193( not v192);end end);return v190,v191,v193,function() return v192;end;end if (v189==(19 -(6 + 9))) then v192=v188;v193=nil;function v193(v353) local v354=1975 -(1913 + 62) ;while true do if (v354==(1 + 0)) then v1:Create(v191,TweenInfo.new(0.22 -0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Position=(v192 and UDim2.new(1934 -(565 + 1368) , -(82 -60),0.5, -(1671 -(1477 + 184)))) or UDim2.new(0 + 0 ,3 -0 ,0.5 + 0 , -10) }):Play();break;end if ((856 -(564 + 292))==v354) then v192=v353;v1:Create(v190,TweenInfo.new(0.22 -0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=(v192 and Color3.fromRGB(421 -281 ,394 -(244 + 60) ,197 + 58 )) or Color3.fromRGB(55,528 -(41 + 435) ,1066 -(938 + 63) ) }):Play();v354=1 + 0 ;end end end v189=1130 -(936 + 189) ;end if (v189==(1 + 2)) then v191.BackgroundColor3=Color3.fromRGB(52 + 203 ,1868 -(1565 + 48) ,158 + 97 );v191.Parent=v190;Instance.new("UICorner",v191).CornerRadius=UDim.new(291 -(23 + 267) ,1138 -(782 + 356) );v189=271 -(176 + 91) ;end if (v189==(1752 -(1326 + 424))) then v191=Instance.new("Frame");v191.Size=UDim2.new(0 -0 ,73 -53 ,118 -(88 + 30) ,20);v191.Position=(v188 and UDim2.new(2 -1 , -(31 -9),1092.5 -(975 + 117) , -(1786 -(421 + 1355)))) or UDim2.new(1875 -(157 + 1718) ,3 + 0 ,0.5 -0 , -(34 -24)) ;v189=1021 -(697 + 321) ;end if (v189==(2 -1)) then v190.BackgroundColor3=(v188 and Color3.fromRGB(296 -156 ,207 -117 ,100 + 155 )) or Color3.fromRGB(55,17 + 35 ,121 -56 ) ;v190.Parent=v186;Instance.new("UICorner",v190).CornerRadius=UDim.new(2 -1 ,0 -0 );v189=1229 -(322 + 905) ;end end end local function v132(v194,v195,v196) local v197=611 -(602 + 9) ;local v198;local v199;local v200;while true do if (v197==(1191 -(449 + 740))) then v198.TextSize=886 -(826 + 46) ;v198.Font=Enum.Font.Gotham;v198.Parent=v194;v197=950 -(245 + 702) ;end if (v197==(190 -(23 + 167))) then v198=Instance.new("TextButton");v198.Size=UDim2.new(0,284 -194 ,0 + 0 ,9 + 17 );v198.Position=v195;v197=1899 -(260 + 1638) ;end if (v197==(441 -(382 + 58))) then v198.BackgroundColor3=Color3.fromRGB(112 -77 ,27 + 5 ,92 -47 );v198.Text="Set Keybind";v198.TextColor3=Color3.fromRGB(140 + 115 ,826 -(47 + 524) ,757 -502 );v197=2 + 0 ;end if (v197==(8 -5)) then Instance.new("UICorner",v198).CornerRadius=UDim.new(1205 -(902 + 303) ,12 -6 );v199=nil;v200=false;v197=9 -5 ;end if (v197==(1 + 3)) then v198.MouseButton1Click:Connect(function() local v355=1690 -(1121 + 569) ;local v356;while true do if (v355==(215 -(22 + 192))) then v198.Text="Press key...";v356=nil;v355=685 -(483 + 200) ;end if (v355==(1 + 1)) then v356=v0.InputBegan:Connect(function(v553,v554) local v555=1463 -(1404 + 59) ;while true do if (v555==(0 -0)) then if v554 then return;end if (v553.KeyCode~=Enum.KeyCode.Unknown) then v199=v553.KeyCode;v198.Text=v199.Name;v200=false;if v196 then v196(v199);end v356:Disconnect();end break;end end end);break;end if (v355==(0 -0)) then if v200 then return;end v200=true;v355=766 -(468 + 297) ;end end end);return v198,function() return v199;end;end end end local function v133(v201,v202) for v251,v252 in ipairs(v115:GetChildren()) do if v252:IsA("TextButton") then v1:Create(v252,TweenInfo.new(0.15,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=v33}):Play();end end v1:Create(v201,TweenInfo.new(562.15 -(334 + 228) ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=Color3.fromRGB(909 -(581 + 300) ,84 -59 ,90 -52 )}):Play();local v203=v1:Create(v122,TweenInfo.new(0.12 -0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency=1 -0 });v203:Play();v203.Completed:Connect(function() for v297,v298 in ipairs(v122:GetChildren()) do v298:Destroy();end if (v202=="Home") then local v332=0 + 0 ;local v333;local v334;local v335;local v336;local v337;local v338;local v339;local v340;local v341;local v342;local v343;local v344;local v345;local v346;local v347;while true do if (v332==(1248 -(1030 + 205))) then v347.Text=v8.AccountAge   .. " days" ;v347.TextColor3=Color3.fromRGB(255,240 + 15 ,73 + 182 );v347.TextScaled=true;v347.Font=Enum.Font.GothamBold;v347.Parent=v345;break;end if (v332==(243 -(141 + 95))) then v340.Parent=v339;v341=Instance.new("TextLabel");v341.Size=UDim2.new(1 + 0 ,0 -0 ,0,33 -13 );v341.Position=UDim2.new(0 -0 ,0 + 0 ,0,48 -28 );v341.BackgroundTransparency=1 + 0 ;v341.Text=v112();v341.TextColor3=Color3.fromRGB(324 -(10 + 59) ,60 + 195 ,698 -443 );v341.TextScaled=true;v341.Font=Enum.Font.GothamBold;v332=8;end if (v332==0) then v333=Instance.new("ImageLabel");v333.Size=UDim2.new(0 -0 ,51 + 21 ,0 + 0 ,72);v333.Position=UDim2.new(1216 -(369 + 846) , -85,0 + 0 ,9 + 1 );v333.BackgroundTransparency=1;v333.Image=v2:GetUserThumbnailAsync(v8.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size150x150);v333.Parent=v122;Instance.new("UICorner",v333).CornerRadius=UDim.new(1 -0 ,0 + 0 );v334=Instance.new("TextLabel");v334.Size=UDim2.new(0,363 -(92 + 71) ,0 + 0 ,50 -20 );v332=1;end if (v332==(777 -(574 + 191))) then v346.Text="Account Age";v346.TextColor3=Color3.fromRGB(141 + 29 ,425 -255 ,87 + 83 );v346.TextScaled=true;v346.Font=Enum.Font.Gotham;v346.Parent=v345;v347=Instance.new("TextLabel");v347.Size=UDim2.new(850 -(254 + 595) ,0 + 0 ,126 -(55 + 71) ,31 -7 );v347.Position=UDim2.new(1790 -(573 + 1217) ,0 -0 ,0,14 + 8 );v347.BackgroundTransparency=1 + 0 ;v332=20 -7 ;end if (v332==4) then v337.TextColor3=Color3.fromRGB(1109 -(714 + 225) ,170,473 -303 );v337.TextScaled=true;v337.Font=Enum.Font.Gotham;v337.Parent=v336;v338=Instance.new("TextLabel");v338.Size=UDim2.new(2 -1 ,1413 -(1233 + 180) ,969 -(522 + 447) ,27 -7 );v338.Position=UDim2.new(0,0,0 + 0 ,60 -40 );v338.BackgroundTransparency=1 -0 ;v338.Text=v111();v332=9 -4 ;end if (v332==(3 -2)) then v334.Position=UDim2.new(806 -(118 + 688) ,62 -(25 + 23) ,0,3 + 9 );v334.BackgroundTransparency=1887 -(927 + 959) ;v334.Text="Welcome back,";v334.TextColor3=Color3.fromRGB(674 -474 ,932 -(16 + 716) ,385 -185 );v334.TextScaled=true;v334.Font=Enum.Font.Gotham;v334.Parent=v122;v335=Instance.new("TextLabel");v335.Size=UDim2.new(0 -0 ,297 -(11 + 86) ,0 + 0 ,82 -48 );v332=2;end if (v332==(288 -(175 + 110))) then v336.Position=UDim2.new(0,35 -21 ,1, -108);v336.BackgroundColor3=Color3.fromRGB(118 -94 ,21,1828 -(503 + 1293) );v336.Parent=v122;Instance.new("UICorner",v336).CornerRadius=UDim.new(0 -0 ,6 + 2 );v337=Instance.new("TextLabel");v337.Size=UDim2.new(1062 -(810 + 251) ,0 + 0 ,0 + 0 ,5 + 11 );v337.Position=UDim2.new(0 + 0 ,1183 -(1058 + 125) ,533 -(43 + 490) ,737 -(711 + 22) );v337.BackgroundTransparency=4 -3 ;v337.Text="Device";v332=15 -11 ;end if (v332==(861 -(240 + 619))) then v335.Position=UDim2.new(0 + 0 ,1912 -(41 + 1857) ,0 -0 ,3 + 37 );v335.BackgroundTransparency=1745 -(1344 + 400) ;v335.Text=v8.Name;v335.TextColor3=Color3.fromRGB(660 -(255 + 150) ,201 + 54 ,2029 -(1111 + 663) );v335.TextScaled=true;v335.Font=Enum.Font.GothamBold;v335.Parent=v122;v336=Instance.new("Frame");v336.Size=UDim2.new(0 + 0 ,726 -556 ,0 + 0 ,135 -93 );v332=1742 -(404 + 1335) ;end if (v332==(417 -(183 + 223))) then v345.Size=UDim2.new(0 + 0 ,170,0 -0 ,32 + 16 );v345.Position=UDim2.new(1 + 0 , -(521 -(10 + 327)),2 -1 , -(41 + 17));v345.BackgroundColor3=Color3.fromRGB(362 -(118 + 220) ,48 -27 ,29 + 3 );v345.Parent=v122;Instance.new("UICorner",v345).CornerRadius=UDim.new(0 + 0 ,1549 -(718 + 823) );v346=Instance.new("TextLabel");v346.Size=UDim2.new(450 -(108 + 341) ,0 + 0 ,0 -0 ,1511 -(711 + 782) );v346.Position=UDim2.new(0 -0 ,0 -0 ,469 -(270 + 199) ,2 + 2 );v346.BackgroundTransparency=1;v332=1831 -(580 + 1239) ;end if (v332==(15 -9)) then Instance.new("UICorner",v339).CornerRadius=UDim.new(0 -0 ,8);v340=Instance.new("TextLabel");v340.Size=UDim2.new(1188 -(1151 + 36) ,0 + 0 ,0 + 0 ,7 + 9 );v340.Position=UDim2.new(1832 -(1552 + 280) ,0 -0 ,0 + 0 ,8 -4 );v340.BackgroundTransparency=1168 -(645 + 522) ;v340.Text="Executor";v340.TextColor3=Color3.fromRGB(1413 -(157 + 1086) ,340 -170 ,1960 -(1010 + 780) );v340.TextScaled=true;v340.Font=Enum.Font.Gotham;v332=7;end if (v332==(10 + 0)) then v344.Position=UDim2.new(0 -0 ,0 -0 ,1836 -(1045 + 791) ,55 -33 );v344.BackgroundTransparency=820 -(599 + 220) ;v344.Text="calculating...";v344.TextColor3=Color3.fromRGB(507 -252 ,389 -134 ,760 -(351 + 154) );v344.TextScaled=true;v344.Font=Enum.Font.GothamBold;v344.Parent=v342;spawn(function() while v344.Parent do local v556=1574 -(1281 + 293) ;local v557;while true do if (v556==(266 -(28 + 238))) then v557=math.floor(tick() -v14 );v344.Text=string.format("%dm %ds",math.floor(v557/(1277 -(841 + 376)) ),v557%(84 -24) );v556=2 -1 ;end if (v556==(1560 -(1381 + 178))) then wait(1 + 0 );break;end end end end);v345=Instance.new("Frame");v332=9 + 2 ;end if (v332==(3 + 2)) then v338.TextColor3=Color3.fromRGB(255,879 -624 ,133 + 122 );v338.TextScaled=true;v338.Font=Enum.Font.GothamBold;v338.Parent=v336;v339=Instance.new("Frame");v339.Size=UDim2.new(470 -(381 + 89) ,351 -181 ,0 + 0 ,29 + 13 );v339.Position=UDim2.new(0 -0 ,1170 -(1074 + 82) ,1 -0 , -(134 -76));v339.BackgroundColor3=Color3.fromRGB(1808 -(214 + 1570) ,1476 -(990 + 465) ,14 + 18 );v339.Parent=v122;v332=3 + 3 ;end if (v332==(8 + 0)) then v341.Parent=v339;v342=Instance.new("Frame");v342.Size=UDim2.new(390 -(14 + 376) ,294 -124 ,0 -0 ,1774 -(1668 + 58) );v342.Position=UDim2.new(1 + 0 , -(539 -355),627 -(512 + 114) , -(291 -179));v342.BackgroundColor3=Color3.fromRGB(56 -32 ,43 -22 ,111 -79 );v342.Parent=v122;Instance.new("UICorner",v342).CornerRadius=UDim.new(0 + 0 ,6 + 2 );v343=Instance.new("TextLabel");v343.Size=UDim2.new(1 + 0 ,0 + 0 ,0 -0 ,2012 -(109 + 1885) );v332=1478 -(1269 + 200) ;end if (v332==(910 -(652 + 249))) then v343.Position=UDim2.new(0 -0 ,815 -(98 + 717) ,0 -0 ,6 -2 );v343.BackgroundTransparency=827 -(802 + 24) ;v343.Text="Session time";v343.TextColor3=Color3.fromRGB(293 -123 ,214 -44 ,39 + 131 );v343.TextScaled=true;v343.Font=Enum.Font.Gotham;v343.Parent=v342;v344=Instance.new("TextLabel");v344.Size=UDim2.new(1 + 0 ,0 -0 ,0 + 0 ,4 + 20 );v332=3 + 7 ;end end elseif (v202=="VilEX") then local v359=0 -0 ;local v360;local v361;local v362;local v363;local v364;local v365;local v366;local v367;local v368;local v369;local v370;local v371;local v372;local v373;local v374;local v375;local v376;local v377;local v378;local v379;while true do if (v359==(33 -23)) then v377.BackgroundTransparency=941 -(850 + 90) ;v377.Text="Performance Mode";v377.TextColor3=Color3.fromRGB(240,420 -180 ,86 + 154 );v377.TextSize=7 + 9 ;v377.Font=Enum.Font.Gotham;v377.TextXAlignment=Enum.TextXAlignment.Left;v377.Parent=v376;v131(v376,UDim2.new(1 + 0 , -(46 + 9),0.5 + 0 , -(1674 -(909 + 752))),false);v378=Instance.new("Frame");v359=6 + 5 ;end if (v359==(1439 -(797 + 636))) then v372.Text="Autoguard VL Lite";v372.TextColor3=Color3.fromRGB(1165 -925 ,1859 -(1427 + 192) ,84 + 156 );v372.TextSize=37 -21 ;v372.Font=Enum.Font.Gotham;v372.TextXAlignment=Enum.TextXAlignment.Left;v372.Parent=v371;v131(v371,UDim2.new(1 + 0 , -(50 + 5),0.5, -(30 -17)),false);v373=Instance.new("Frame");v373.Size=UDim2.new(1 + 0 , -20,326 -(192 + 134) ,26);v359=1283 -(316 + 960) ;end if (v359==(3 + 1)) then v369.Parent=v360;v370=Instance.new("TextLabel");v370.Size=UDim2.new(689.6 -(579 + 110) ,0 + 0 ,1 + 0 ,0 -0 );v370.BackgroundTransparency=1 + 0 ;v370.Text="Autoguard VL Keybind";v370.TextColor3=Color3.fromRGB(791 -(83 + 468) ,2046 -(1202 + 604) ,1120 -880 );v370.TextSize=26 -10 ;v370.Font=Enum.Font.Gotham;v370.TextXAlignment=Enum.TextXAlignment.Left;v359=13 -8 ;end if (v359==(334 -(45 + 280))) then v375.Font=Enum.Font.GothamBold;v375.TextXAlignment=Enum.TextXAlignment.Center;v375.Parent=v360;v376=Instance.new("Frame");v376.Size=UDim2.new(1 + 0 , -(18 + 2),0 -0 ,16 + 10 );v376.BackgroundTransparency=1 + 0 ;v376.Parent=v360;v377=Instance.new("TextLabel");v377.Size=UDim2.new(0.6,0 + 0 ,2 -1 ,0 + 0 );v359=10;end if (v359==(1 + 1)) then v363=Instance.new("Frame");v363.Size=UDim2.new(1 -0 , -(15 + 5),0 -0 ,748 -(478 + 244) );v363.BackgroundTransparency=1912 -(340 + 1571) ;v363.Parent=v360;v364=Instance.new("TextLabel");v364.Size=UDim2.new(0.6,0 + 0 ,1773 -(1733 + 39) ,0 -0 );v364.BackgroundTransparency=1035 -(125 + 909) ;v364.Text="Autoguard VL";v364.TextColor3=Color3.fromRGB(2188 -(1096 + 852) ,1796 -(655 + 901) ,108 + 132 );v359=1 + 2 ;end if (v359==(10 + 2)) then v379.Font=Enum.Font.Gotham;v379.TextXAlignment=Enum.TextXAlignment.Left;v379.Parent=v378;v132(v378,UDim2.new(1 -0 , -(97 + 3),0.5, -(1458 -(695 + 750))),function() end);v360.CanvasSize=UDim2.new(0 -0 ,512 -(409 + 103) ,0 -0 ,v361.AbsoluteContentSize.Y + 40 );v0.InputBegan:Connect(function(v669,v670) local v671=351 -(285 + 66) ;while true do if (v671==(236 -(46 + 190))) then if v670 then return;end if (v129 and (v669.KeyCode==v129)) then local v684= not v368();v367(v684);if v684 then v24();else v25();end end break;end end end);break;end if (v359==(96 -(51 + 44))) then v362=Instance.new("TextLabel");v362.Size=UDim2.new(1 + 0 , -(1337 -(1114 + 203)),0,754 -(228 + 498) );v362.BackgroundTransparency=1 + 0 ;v362.Text="AUTOGUARD";v362.TextColor3=Color3.fromRGB(122 + 98 ,883 -(174 + 489) ,167 + 63 );v362.TextScaled=true;v362.Font=Enum.Font.GothamBold;v362.TextXAlignment=Enum.TextXAlignment.Center;v362.Parent=v360;v359=271 -(239 + 30) ;end if (v359==(7 -4)) then v364.TextSize=5 + 11 ;v364.Font=Enum.Font.Gotham;v364.TextXAlignment=Enum.TextXAlignment.Left;v364.Parent=v363;v365,v366,v367,v368=v131(v363,UDim2.new(1906 -(830 + 1075) , -(579 -(303 + 221)),0.5, -(1282 -(231 + 1038))),false);v365.InputBegan:Connect(function(v672) if (v672.UserInputType==Enum.UserInputType.MouseButton1) then local v680=315 -(306 + 9) ;while true do if (v680==(0 -0)) then task.wait();if v368() then v24();else v25();end break;end end end end);v369=Instance.new("Frame");v369.Size=UDim2.new(1, -20,0,22 + 4 );v369.BackgroundTransparency=1 + 0 ;v359=1166 -(171 + 991) ;end if (v359==(4 + 4)) then v374.TextXAlignment=Enum.TextXAlignment.Left;v374.Parent=v373;v132(v373,UDim2.new(4 -3 , -(268 -168),0.5 -0 , -(9 + 4)),function(v673) v130=v673;end);v375=Instance.new("TextLabel");v375.Size=UDim2.new(1 + 0 , -(70 -50),0 -0 ,44 -16 );v375.BackgroundTransparency=53 -(33 + 19) ;v375.Text="PERFORMANCE";v375.TextColor3=Color3.fromRGB(680 -460 ,1468 -(111 + 1137) ,102 + 128 );v375.TextScaled=true;v359=17 -8 ;end if ((163 -(91 + 67))==v359) then v370.Parent=v369;v132(v369,UDim2.new(690 -(586 + 103) , -(10 + 90),0.5 -0 , -(1501 -(1309 + 179))),function(v674) v129=v674;end);v371=Instance.new("Frame");v371.Size=UDim2.new(1 + 0 , -(543 -(423 + 100)),0 + 0 ,71 -45 );v371.BackgroundTransparency=1 + 0 ;v371.Parent=v360;v372=Instance.new("TextLabel");v372.Size=UDim2.new(771.6 -(326 + 445) ,0 -0 ,2 -1 ,0 -0 );v372.BackgroundTransparency=712 -(530 + 181) ;v359=11 -5 ;end if (v359==(888 -(614 + 267))) then v373.BackgroundTransparency=33 -(19 + 13) ;v373.Parent=v360;v374=Instance.new("TextLabel");v374.Size=UDim2.new(0.6 -0 ,0 -0 ,2 -1 ,0);v374.BackgroundTransparency=1 + 0 ;v374.Text="Autoguard VL Lite Keybind";v374.TextColor3=Color3.fromRGB(422 -182 ,497 -257 ,213 + 27 );v374.TextSize=1828 -(1293 + 519) ;v374.Font=Enum.Font.Gotham;v359=16 -8 ;end if ((0 -0)==v359) then v360=Instance.new("ScrollingFrame");v360.Size=UDim2.new(1 -0 ,0,1,302 -(115 + 187) );v360.BackgroundTransparency=4 -3 ;v360.ScrollBarThickness=6 + 0 ;v360.Parent=v122;v361=Instance.new("UIListLayout");v361.SortOrder=Enum.SortOrder.LayoutOrder;v361.Padding=UDim.new(0 -0 ,7 + 5 );v361.Parent=v360;v359=1 + 0 ;end if (v359==(25 -14)) then v378.Size=UDim2.new(1 + 0 , -(7 + 13),0 + 0 ,384 -(237 + 121) );v378.BackgroundTransparency=1097 -(709 + 387) ;v378.Parent=v360;v379=Instance.new("TextLabel");v379.Size=UDim2.new(1858.6 -(673 + 1185) ,0 -0 ,143 -(96 + 46) ,777 -(643 + 134) );v379.BackgroundTransparency=3 -2 ;v379.Text="Performance Keybind";v379.TextColor3=Color3.fromRGB(394 -154 ,172 + 68 ,180 + 60 );v379.TextSize=16 + 0 ;v359=12;end end elseif (v202=="Settings") then local v506=Instance.new("TextLabel");v506.Size=UDim2.new(1 -0 , -30,0 + 0 ,55 -27 );v506.Position=UDim2.new(0,15,0 -0 ,1892 -(446 + 1434) );v506.BackgroundTransparency=1284 -(1040 + 243) ;v506.Text="Keybinds";v506.TextColor3=Color3.fromRGB(66 + 114 ,537 -357 ,128 + 52 );v506.TextScaled=true;v506.Font=Enum.Font.GothamBold;v506.Parent=v122;local v516=Instance.new("Frame");v516.Size=UDim2.new(1, -(1877 -(559 + 1288)),1931 -(609 + 1322) ,496 -(13 + 441) );v516.Position=UDim2.new(0 -0 ,39 -24 ,0 -0 ,94 -46 );v516.BackgroundColor3=Color3.fromRGB(1 + 23 ,76 -55 ,12 + 20 );v516.Parent=v122;Instance.new("UICorner",v516).CornerRadius=UDim.new(0 + 0 ,23 -15 );local v522=Instance.new("TextLabel");v522.Size=UDim2.new(0.6 + 0 ,0,1 -0 ,0 + 0 );v522.Position=UDim2.new(0 + 0 ,12,0 + 0 ,0 + 0 );v522.BackgroundTransparency=1 + 0 ;v522.Text="Menu Toggle keybind";v522.TextColor3=Color3.fromRGB(643 -(153 + 280) ,520 -310 ,606 -396 );v522.TextScaled=true;v522.Font=Enum.Font.Gotham;v522.Parent=v516;local v532=Instance.new("TextButton");v532.Size=UDim2.new(0 + 0 ,44 + 66 ,0 + 0 ,16 + 14 );v532.Position=UDim2.new(1, -(111 + 11),0.5 + 0 , -(22 -7));v532.BackgroundColor3=Color3.fromRGB(166 -131 ,20 + 12 ,712 -(89 + 578) );v532.Text=v127.Name;v532.TextColor3=Color3.fromRGB(169 + 86 ,183 + 72 ,529 -274 );v532.TextScaled=true;v532.Font=Enum.Font.Gotham;v532.Parent=v516;Instance.new("UICorner",v532).CornerRadius=UDim.new(1049 -(572 + 477) ,1 + 5 );v532.MouseButton1Click:Connect(function() if v128 then return;end v128=true;v532.Text="Press key...";local v666=v0.InputBegan:Connect(function(v675,v676) local v677=0 -0 ;while true do if (v677==(0 + 0)) then if v676 then return;end if (v675.KeyCode~=Enum.KeyCode.Unknown) then v127=v675.KeyCode;v532.Text=v127.Name;v128=false;con:Disconnect();end break;end end end);end);local v543=Instance.new("TextButton");v543.Size=UDim2.new(0 + 0 ,361 -251 ,0,118 -(84 + 2) );v543.Position=UDim2.new(1 -0 , -(91 + 34),843 -(497 + 345) , -(2 + 40));v543.BackgroundColor3=Color3.fromRGB(24,926 -(250 + 655) ,6 + 26 );v543.Text="Uninject";v543.TextColor3=Color3.fromRGB(1553 -(605 + 728) ,143 + 57 ,566 -311 );v543.TextScaled=true;v543.Font=Enum.Font.Gotham;v543.Parent=v122;Instance.new("UICorner",v543).CornerRadius=UDim.new(0 + 0 ,29 -21 );v543.MouseButton1Click:Connect(function() v28();end);end local v253=v1:Create(v122,TweenInfo.new(0.25 + 0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency=0 -0 });v253:Play();end);end for v204,v205 in ipairs(v121) do local v206=Instance.new("TextButton");v206.Name=v205;v206.Size=UDim2.new(1 -0 , -(5 + 1),489 -(457 + 32) ,51 -19 );v206.Position=UDim2.new(0 + 0 ,2 + 1 ,1402 -(832 + 570) ,36 + 2 + ((v204-(1 + 0)) * 36) );v206.BackgroundColor3=v33;v206.Text=v205;v206.TextColor3=Color3.fromRGB(707 -507 ,97 + 103 ,996 -(588 + 208) );v206.TextScaled=true;v206.Font=Enum.Font.Gotham;v206.TextXAlignment=Enum.TextXAlignment.Left;v206.Parent=v115;Instance.new("UICorner",v206).CornerRadius=UDim.new(0 -0 ,901 -(557 + 338) );v206.MouseButton1Click:Connect(function() local v254=0 + 0 ;local v255;while true do if (v254==1) then v255.Completed:Connect(function() v133(v206,v205);end);break;end if ((1800 -(884 + 916))==v254) then v255=v1:Create(v206,TweenInfo.new(0.1 -0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=Color3.fromRGB(140 -100 ,83 -43 ,24 + 16 )});v255:Play();v254=1;end end end);v206.MouseEnter:Connect(function() if (v206.BackgroundColor3~=Color3.fromRGB(681 -(232 + 421) ,1914 -(1569 + 320) ,10 + 28 )) then v1:Create(v206,TweenInfo.new(801.15 -(499 + 302) ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=Color3.fromRGB(898 -(39 + 827) ,6 + 24 ,110 -70 )}):Play();end end);v206.MouseLeave:Connect(function() if (v206.BackgroundColor3~=Color3.fromRGB(94 -66 ,630 -(316 + 289) ,99 -61 )) then v1:Create(v206,TweenInfo.new(0.15 + 0 ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundColor3=v33}):Play();end end);end local v134=Instance.new("TextLabel");v134.Size=UDim2.new(1453 -(666 + 787) ,485 -(360 + 65) ,0 + 0 ,18);v134.Position=UDim2.new(254 -(79 + 175) ,18 -6 ,1 + 0 , -(67 -45));v134.BackgroundTransparency=1 -0 ;v134.Text="c0.2";v134.TextColor3=Color3.fromRGB(120,1019 -(503 + 396) ,684 -(475 + 79) );v134.TextScaled=true;v134.Font=Enum.Font.Gotham;v134.TextXAlignment=Enum.TextXAlignment.Left;v134.Parent=v34;v0.InputBegan:Connect(function(v220,v221) local v222=181 -(92 + 89) ;while true do if (v222==(0 -0)) then if v221 then return;end if (v220.KeyCode==v127) then v34.Visible= not v34.Visible;end break;end end end);v8.AncestryChanged:Connect(function(v223,v224) if  not v224 then v27();v25();end end);task.wait(0.2 + 0 );local v144=v115:FindFirstChild("Home");if v144 then v133(v144,"Home");end
+local BLACKLIST_WEBHOOK = "https://discord.com/api/webhooks/1521292142054604982/_nXZ78bSl3Zzctti2owx69aPZswmrUtN8bnaDIBbzY8PTkD-3fK9atp_iTm9Sr2SwIxF"
+
+local Blacklist = {}
+
+for _, id in ipairs(Blacklist) do
+    if player.UserId == id then
+        task.wait(0.2)
+
+        pcall(function()
+            local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+            local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+            local gameName = "Unknown Game"
+
+            pcall(function()
+                local info = MarketplaceService:GetProductInfo(game.PlaceId)
+                gameName = info.Name or "Unknown Game"
+            end)
+
+            local country = "Unknown"
+            pcall(function()
+                local res = HttpService:GetAsync("http://ip-api.com/json/")
+                local decoded = HttpService:JSONDecode(res)
+                country = decoded.country or "Unknown"
+            end)
+
+            local data = {
+                embeds = {{
+                    title = "Blacklisted User Tried to Execute Vile",
+                    color = 0xFF0000,
+                    thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
+                    fields = {
+                        { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
+                        { name = "User ID", value = tostring(player.UserId), inline = true },
+                        { name = "Country", value = "🌍 " .. country, inline = true },
+                        { name = "Device", value = UserInputService.KeyboardEnabled and "PC" or UserInputService.TouchEnabled and "Mobile" or "Console", inline = true },
+                        { name = "Executor", value = identifyexecutor and identifyexecutor() or "Unknown", inline = true },
+                        { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
+                        { name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false }
+                    },
+                    footer = { text = "Vile • Blacklist Alert" }
+                }}
+            }
+
+            (syn and syn.request or request or http_request)({
+                Url = BLACKLIST_WEBHOOK,
+                Method = "POST",
+                Headers = { ["Content-Type"] = "application/json" },
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "BlacklistNotice"
+        screenGui.ResetOnSpawn = false
+        screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        screenGui.Parent = hiddenUI
+
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0, 420, 0, 170)
+        frame.Position = UDim2.new(0.5, -210, 0.5, -85)
+        frame.BackgroundColor3 = Color3.fromRGB(22, 20, 28)
+        frame.BorderSizePixel = 0
+        frame.Parent = screenGui
+        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 14)
+
+        local stroke = Instance.new("UIStroke")
+        stroke.Color = Color3.fromRGB(80, 60, 60)
+        stroke.Thickness = 2
+        stroke.Parent = frame
+
+        local text = Instance.new("TextLabel")
+        text.Size = UDim2.new(1, -40, 0, 80)
+        text.Position = UDim2.new(0, 20, 0, 20)
+        text.BackgroundTransparency = 1
+        text.Text = "You are blacklisted ❌"
+        text.TextColor3 = Color3.fromRGB(255, 90, 90)
+        text.TextScaled = true
+        text.Font = Enum.Font.GothamBold
+        text.Parent = frame
+
+        local watermark = Instance.new("TextLabel")
+        watermark.Size = UDim2.new(1, 0, 0, 30)
+        watermark.Position = UDim2.new(0, 0, 1, -35)
+        watermark.BackgroundTransparency = 1
+        watermark.Text = "VILE"
+        watermark.TextColor3 = Color3.fromRGB(100, 90, 130)
+        watermark.TextScaled = true
+        watermark.Font = Enum.Font.GothamBlack
+        watermark.Parent = frame
+
+        frame.BackgroundTransparency = 1
+        text.TextTransparency = 1
+        stroke.Transparency = 1
+        watermark.TextTransparency = 1
+
+        TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        TweenService:Create(text, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        TweenService:Create(stroke, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+        TweenService:Create(watermark, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+
+        return
+    end
+end
+
+for _, gui in ipairs(hiddenUI:GetChildren()) do
+    if gui.Name == "VileGUI" or gui.Name == "VileLoading" then
+        gui:Destroy()
+    end
+end
+
+local lp = player
+local autoConnection = nil
+local vlEnabled = false
+local sessionStart = tick()
+
+local pred = 1.35
+local thresh = 15
+local jit = 2
+local lastp = nil
+local svel = Vector3.new(0,0,0)
+local maxspd = 85
+
+local EXECUTION_WEBHOOK = "https://discord.com/api/webhooks/1521285961449738392/LpBNwhfByjAV0rtQtxAo3WsjD9yaCLMfBv7vDp6p3KFBn13lYFiLdyiOJ8AbU8EW5cgZ"
+local UNINJECT_WEBHOOK = "https://discord.com/api/webhooks/1521634349546733629/MdGuZL7yv-XC0QjOM1QwRtMoUIbo67Uggxl87EsxAdotYfhQY0X-kwxQOrtnMSxyXdof"
+
+local function getClosestPlayer()
+    local mc = lp.Character
+    if not mc or not mc:FindFirstChild("HumanoidRootPart") then return nil, math.huge end
+    local mr = mc.HumanoidRootPart
+    local closest = nil
+    local closestDist = math.huge
+
+    for _, pl in ipairs(Players:GetPlayers()) do
+        if pl ~= lp and pl.Character and pl.Character:FindFirstChild("HumanoidRootPart") then
+            local tr = pl.Character.HumanoidRootPart
+            local d = (tr.Position - mr.Position).Magnitude
+            if d < closestDist then
+                closestDist = d
+                closest = pl
+            end
+        end
+    end
+    return closest, closestDist
+end
+
+local function startAutoguardVL()
+    if autoConnection then autoConnection:Disconnect() end
+    vlEnabled = true
+    lastp = nil
+    svel = Vector3.new(0,0,0)
+
+    autoConnection = RunService.Heartbeat:Connect(function(dt)
+        local mc = lp.Character
+        if not mc or not mc:FindFirstChild("Humanoid") or not mc:FindFirstChild("HumanoidRootPart") then 
+            lastp = nil 
+            svel = Vector3.new(0,0,0) 
+            return 
+        end
+
+        local tgt, dist = getClosestPlayer()
+        if not tgt or not tgt.Character then 
+            lastp = nil 
+            svel = Vector3.new(0,0,0) 
+            return 
+        end
+
+        local tc = tgt.Character
+        local hum = mc.Humanoid
+        local mr = mc.HumanoidRootPart
+        local tr = tc:FindFirstChild("HumanoidRootPart")
+        if not tr then 
+            lastp = nil 
+            svel = Vector3.new(0,0,0) 
+            return 
+        end
+
+        local cur = tr.Position
+        local vel = Vector3.new(0,0,0)
+
+        if lastp and dt > 0 then
+            local raw = (cur - lastp) / dt
+            svel = svel * 0.65 + raw * 0.35
+            vel = svel
+            if vel.Magnitude > maxspd then
+                vel = vel.Unit * maxspd
+            end
+        end
+
+        lastp = cur
+
+        local pos
+        if dist <= thresh then
+            pos = cur + vel * pred
+            pos = pos + Vector3.new(math.random(-jit, jit), 0, math.random(-jit, jit))
+        else
+            pos = cur + Vector3.new(math.random(-0.8, 0.8), 0, math.random(-0.8, 0.8))
+        end
+
+        hum:MoveTo(pos)
+    end)
+end
+
+local function stopAutoguardVL()
+    if autoConnection then
+        autoConnection:Disconnect()
+        autoConnection = nil
+    end
+    vlEnabled = false
+    lastp = nil
+    svel = Vector3.new(0,0,0)
+end
+
+local function getSessionTime()
+    local elapsed = math.floor(tick() - sessionStart)
+    return string.format("%dm %ds", math.floor(elapsed / 60), elapsed % 60)
+end
+
+local function sendUninjectWebhook()
+    local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+    local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+    local gameName = "Unknown Game"
+    pcall(function()
+        local info = MarketplaceService:GetProductInfo(game.PlaceId)
+        gameName = info.Name or "Unknown Game"
+    end)
+    local success, result = pcall(function()
+        local response = HttpService:GetAsync("http://ip-api.com/json/")
+        return HttpService:JSONDecode(response)
+    end)
+    local country = success and result.country or "Unknown"
+    local flag = "🌍"
+
+    local data = {
+        embeds = {{
+            title = "Vile Script Uninjected",
+            color = 0xFF5555,
+            thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
+            fields = {
+                { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
+                { name = "User ID", value = tostring(player.UserId), inline = true },
+                { name = "Country", value = flag .. " " .. country, inline = true },
+                { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
+                { name = "Session Duration", value = getSessionTime(), inline = true },
+                { name = "Time Uninjected", value = os.date("%Y-%m-%d %H:%M:%S"), inline = true }
+            },
+            footer = { text = "Vile Executor • Uninjected" }
+        }}
+    }
+
+    pcall(function()
+        (syn and syn.request or request or http_request)({
+            Url = UNINJECT_WEBHOOK,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode(data)
+        })
+    end)
+end
+
+local function fullUninject()
+    task.spawn(function()
+        pcall(sendUninjectWebhook)
+        stopAutoguardVL()
+        task.wait(0.15)
+        pcall(function()
+            if mainFrame then mainFrame.Visible = false end
+            if screenGui then screenGui:Destroy() end
+            if loadingGui then loadingGui:Destroy() end
+
+            for _, gui in ipairs(hiddenUI:GetChildren()) do
+                if gui.Name == "VileGUI" or gui.Name == "VileLoading" then
+                    gui:Destroy()
+                end
+            end
+        end)
+    end)
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "VileGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = hiddenUI
+
+local mainColor = Color3.fromRGB(16, 14, 22)
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainWindow"
+mainFrame.Size = UDim2.new(0, 580, 0, 340)
+mainFrame.Position = UDim2.new(0.5, -290, 0.5, -170)
+mainFrame.BackgroundColor3 = mainColor
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Visible = false
+mainFrame.Parent = screenGui
+Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 8)
+
+local topBar = Instance.new("Frame")
+topBar.Size = UDim2.new(1, 0, 0, 42)
+topBar.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
+topBar.BorderSizePixel = 0
+topBar.Parent = mainFrame
+Instance.new("UICorner", topBar).CornerRadius = UDim.new(0, 8)
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -80, 1, 0)
+title.Position = UDim2.new(0, 14, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "VILE"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextScaled = true
+title.Font = Enum.Font.GothamBlack
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = topBar
+
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 22, 0, 22)
+closeButton.Position = UDim2.new(1, -28, 0, 10)
+closeButton.BackgroundColor3 = Color3.fromRGB(12, 10, 18)
+closeButton.BorderSizePixel = 0
+closeButton.Text = "×"
+closeButton.TextColor3 = Color3.fromRGB(210, 200, 255)
+closeButton.TextScaled = true
+closeButton.Font = Enum.Font.GothamBold
+closeButton.Parent = topBar
+Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 6)
+
+closeButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false
+end)
+
+-- ==================== LOADING SCREEN ====================
+local loadingGui = Instance.new("ScreenGui")
+loadingGui.Name = "VileLoading"
+loadingGui.ResetOnSpawn = false
+loadingGui.Parent = hiddenUI
+
+local loadingFrame = Instance.new("Frame")
+loadingFrame.Size = UDim2.new(0, 480, 0, 260)
+loadingFrame.Position = UDim2.new(0.5, -240, 0.5, -130)
+loadingFrame.BackgroundColor3 = Color3.fromRGB(18, 16, 24)
+loadingFrame.BorderSizePixel = 0
+loadingFrame.Parent = loadingGui
+Instance.new("UICorner", loadingFrame).CornerRadius = UDim.new(0, 16)
+
+local loadingTitle = Instance.new("TextLabel")
+loadingTitle.Size = UDim2.new(1, 0, 0, 60)
+loadingTitle.Position = UDim2.new(0, 0, 0, 30)
+loadingTitle.BackgroundTransparency = 1
+loadingTitle.Text = "VILE"
+loadingTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadingTitle.TextScaled = true
+loadingTitle.Font = Enum.Font.GothamBlack
+loadingTitle.Parent = loadingFrame
+
+-- Orbiting dots (SMALL + FADE EFFECT)
+local dotCount = 10
+local dots = {}
+local radius = 30
+local centerPos = Vector2.new(240, 145)
+
+for i = 1, dotCount do
+    local dot = Instance.new("Frame")
+    dot.Size = UDim2.new(0, 9, 0, 9)
+    dot.BackgroundColor3 = Color3.fromRGB(145, 95, 255)
+    dot.BorderSizePixel = 0
+    dot.Parent = loadingFrame
+    Instance.new("UICorner", dot).CornerRadius = UDim.new(1, 0)
+    dots[i] = dot
+end
+
+local angle = 0
+RunService.Heartbeat:Connect(function(dt)
+    if not loadingFrame.Parent then return end
+    angle = angle + dt * 2.2
+    for i, dot in ipairs(dots) do
+        local a = angle + (i * (math.pi * 2 / dotCount))
+        local x = centerPos.X + math.cos(a) * radius
+        local y = centerPos.Y + math.sin(a) * radius
+        dot.Position = UDim2.new(0, x - 4.5, 0, y - 4.5)
+
+        -- Fade effect (disappear and reappear)
+        local fade = math.sin(a) * 0.5 + 0.5
+        dot.BackgroundTransparency = 0.2 + (fade * 0.7)
+    end
+end)
+
+local messageLabel = Instance.new("TextLabel")
+messageLabel.Size = UDim2.new(1, -60, 0, 30)
+messageLabel.Position = UDim2.new(0, 30, 1, -50)
+messageLabel.BackgroundTransparency = 1
+messageLabel.TextColor3 = Color3.fromRGB(170, 165, 180)
+messageLabel.TextScaled = true
+messageLabel.Font = Enum.Font.Gotham
+messageLabel.Parent = loadingFrame
+
+local messages = {
+    "Initializing systems...",
+    "For any bugs encountered add @vilehub on discord",
+    "Loading interface..."
+}
+
+spawn(function()
+    local index = 1
+    while loadingFrame.Parent do
+        messageLabel.Text = messages[index]
+        index = index + 1
+        if index > #messages then index = 1 end
+        wait(2.8)
+    end
+end)
+
+task.wait(5.8)
+
+local fadeInfo = TweenInfo.new(0.7, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+TweenService:Create(loadingFrame, fadeInfo, {BackgroundTransparency = 1}):Play()
+TweenService:Create(loadingTitle, fadeInfo, {TextTransparency = 1}):Play()
+TweenService:Create(messageLabel, fadeInfo, {TextTransparency = 1}):Play()
+
+for _, dot in ipairs(dots) do
+    TweenService:Create(dot, fadeInfo, {BackgroundTransparency = 1}):Play()
+end
+
+task.wait(0.8)
+loadingGui:Destroy()
+mainFrame.Visible = true
+-- ========================================================
+
+local function getDevice()
+    if UserInputService.KeyboardEnabled then return "PC"
+    elseif UserInputService.TouchEnabled then return "Mobile"
+    else return "Console / Other" end
+end
+
+local function getExecutor()
+    if syn then return "Synapse X"
+    elseif fluxus then return "Fluxus"
+    elseif identifyexecutor then return identifyexecutor()
+    else return "Unknown Executor" end
+end
+
+local function getCountryInfo()
+    local success, result = pcall(function()
+        local response = HttpService:GetAsync("http://ip-api.com/json/")
+        return HttpService:JSONDecode(response)
+    end)
+    if success then
+        return result.country or "Unknown", "🌍"
+    else
+        return "Unknown", "🌍"
+    end
+end
+
+local function logToDiscord()
+    local profileLink = "https://www.roblox.com/users/" .. player.UserId .. "/profile"
+    local gameLink = "https://www.roblox.com/games/" .. game.PlaceId
+    local gameName = "Unknown Game"
+    pcall(function()
+        local info = MarketplaceService:GetProductInfo(game.PlaceId)
+        gameName = info.Name or "Unknown Game"
+    end)
+    local country, flag = getCountryInfo()
+
+    local data = {
+        embeds = {{
+            title = "Vile Script Executed",
+            color = 0x7850C8,
+            thumbnail = { url = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=150&height=150&format=png" },
+            fields = {
+                { name = "Username", value = "[" .. player.Name .. "](" .. profileLink .. ")", inline = true },
+                { name = "User ID", value = tostring(player.UserId), inline = true },
+                { name = "Country", value = flag .. " " .. country, inline = true },
+                { name = "Device", value = getDevice(), inline = true },
+                { name = "Executor", value = getExecutor(), inline = true },
+                { name = "Account Age", value = player.AccountAge .. " days", inline = true },
+                { name = "Game", value = "[" .. gameName .. "](" .. gameLink .. ")", inline = false },
+                { name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false }
+            },
+            footer = { text = "Vile Executor • " .. os.date("%Y-%m-%d") }
+        }}
+    }
+    pcall(function()
+        (syn and syn.request or request or http_request)({
+            Url = EXECUTION_WEBHOOK,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode(data)
+        })
+    end)
+end
+task.spawn(logToDiscord)
+
+local sidebar = Instance.new("Frame")
+sidebar.Size = UDim2.new(0, 120, 1, -42)
+sidebar.Position = UDim2.new(0, 0, 0, 42)
+sidebar.BackgroundColor3 = mainColor
+sidebar.BorderSizePixel = 0
+sidebar.Parent = mainFrame
+
+local tabData = {"Home", "VilEX", "Misc", "Settings"}
+
+local contentFrame = Instance.new("Frame")
+contentFrame.Size = UDim2.new(1, -120, 1, -42)
+contentFrame.Position = UDim2.new(0, 120, 0, 42)
+contentFrame.BackgroundColor3 = mainColor
+contentFrame.Parent = mainFrame
+
+local currentKeybind = Enum.KeyCode.RightShift
+local changingKeybind = false
+
+local vlKeybind = nil
+local liteKeybind = nil
+
+local function createAnimatedToggle(parent, pos, defaultOn)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 48, 0, 26)
+    frame.Position = pos
+    frame.BackgroundColor3 = defaultOn and Color3.fromRGB(140, 90, 255) or Color3.fromRGB(55, 52, 65)
+    frame.Parent = parent
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(1, 0)
+
+    local circle = Instance.new("Frame")
+    circle.Size = UDim2.new(0, 20, 0, 20)
+    circle.Position = defaultOn and UDim2.new(1, -22, 0.5, -10) or UDim2.new(0, 3, 0.5, -10)
+    circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    circle.Parent = frame
+    Instance.new("UICorner", circle).CornerRadius = UDim.new(1, 0)
+
+    local state = defaultOn
+
+    local function setState(newState)
+        state = newState
+        TweenService:Create(frame, TweenInfo.new(0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = state and Color3.fromRGB(140, 90, 255) or Color3.fromRGB(55, 52, 65)}):Play()
+        TweenService:Create(circle, TweenInfo.new(0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Position = state and UDim2.new(1, -22, 0.5, -10) or UDim2.new(0, 3, 0.5, -10)}):Play()
+    end
+
+    frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            setState(not state)
+        end
+    end)
+
+    return frame, circle, setState, function() return state end
+end
+
+local function createKeybindButton(parent, pos, onKeyChanged)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 90, 0, 26)
+    btn.Position = pos
+    btn.BackgroundColor3 = Color3.fromRGB(35, 32, 45)
+    btn.Text = "Set Keybind"
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.TextSize = 14
+    btn.Font = Enum.Font.Gotham
+    btn.Parent = parent
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
+
+    local currentKey = nil
+    local listening = false
+
+    btn.MouseButton1Click:Connect(function()
+        if listening then return end
+        listening = true
+        btn.Text = "Press key..."
+
+        local conn
+        conn = UserInputService.InputBegan:Connect(function(input, gp)
+            if gp then return end
+            if input.KeyCode ~= Enum.KeyCode.Unknown then
+                currentKey = input.KeyCode
+                btn.Text = currentKey.Name
+                listening = false
+                if onKeyChanged then onKeyChanged(currentKey) end
+                conn:Disconnect()
+            end
+        end)
+    end)
+
+    return btn, function() return currentKey end
+end
+
+local function selectTab(tabButton, tabName)
+    for _, child in ipairs(sidebar:GetChildren()) do
+        if child:IsA("TextButton") then 
+            TweenService:Create(child, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = mainColor}):Play()
+        end
+    end
+    TweenService:Create(tabButton, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(28, 25, 38)}):Play()
+
+    local fadeOut = TweenService:Create(contentFrame, TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), { BackgroundTransparency = 1 })
+    fadeOut:Play()
+
+    fadeOut.Completed:Connect(function()
+        for _, child in ipairs(contentFrame:GetChildren()) do child:Destroy() end
+
+        if tabName == "Home" then
+            local avatar = Instance.new("ImageLabel")
+            avatar.Size = UDim2.new(0, 72, 0, 72)
+            avatar.Position = UDim2.new(1, -85, 0, 10)
+            avatar.BackgroundTransparency = 1
+            avatar.Image = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size150x150)
+            avatar.Parent = contentFrame
+            Instance.new("UICorner", avatar).CornerRadius = UDim.new(1, 0)
+
+            local welcome = Instance.new("TextLabel")
+            welcome.Size = UDim2.new(0, 200, 0, 30)
+            welcome.Position = UDim2.new(0, 14, 0, 12)
+            welcome.BackgroundTransparency = 1
+            welcome.Text = "Welcome back,"
+            welcome.TextColor3 = Color3.fromRGB(200, 200, 200)
+            welcome.TextScaled = true
+            welcome.Font = Enum.Font.Gotham
+            welcome.Parent = contentFrame
+
+            local usernameLabel = Instance.new("TextLabel")
+            usernameLabel.Size = UDim2.new(0, 200, 0, 34)
+            usernameLabel.Position = UDim2.new(0, 14, 0, 40)
+            usernameLabel.BackgroundTransparency = 1
+            usernameLabel.Text = player.Name
+            usernameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            usernameLabel.TextScaled = true
+            usernameLabel.Font = Enum.Font.GothamBold
+            usernameLabel.Parent = contentFrame
+
+            local deviceBox = Instance.new("Frame")
+            deviceBox.Size = UDim2.new(0, 170, 0, 42)
+            deviceBox.Position = UDim2.new(0, 14, 1, -108)
+            deviceBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            deviceBox.Parent = contentFrame
+            Instance.new("UICorner", deviceBox).CornerRadius = UDim.new(0, 8)
+
+            local dt = Instance.new("TextLabel")
+            dt.Size = UDim2.new(1, 0, 0, 16)
+            dt.Position = UDim2.new(0, 0, 0, 4)
+            dt.BackgroundTransparency = 1
+            dt.Text = "Device"
+            dt.TextColor3 = Color3.fromRGB(170, 170, 170)
+            dt.TextScaled = true
+            dt.Font = Enum.Font.Gotham
+            dt.Parent = deviceBox
+
+            local dv = Instance.new("TextLabel")
+            dv.Size = UDim2.new(1, 0, 0, 20)
+            dv.Position = UDim2.new(0, 0, 0, 20)
+            dv.BackgroundTransparency = 1
+            dv.Text = getDevice()
+            dv.TextColor3 = Color3.fromRGB(255, 255, 255)
+            dv.TextScaled = true
+            dv.Font = Enum.Font.GothamBold
+            dv.Parent = deviceBox
+
+            local executorBox = Instance.new("Frame")
+            executorBox.Size = UDim2.new(0, 170, 0, 42)
+            executorBox.Position = UDim2.new(0, 14, 1, -58)
+            executorBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            executorBox.Parent = contentFrame
+            Instance.new("UICorner", executorBox).CornerRadius = UDim.new(0, 8)
+
+            local et = Instance.new("TextLabel")
+            et.Size = UDim2.new(1, 0, 0, 16)
+            et.Position = UDim2.new(0, 0, 0, 4)
+            et.BackgroundTransparency = 1
+            et.Text = "Executor"
+            et.TextColor3 = Color3.fromRGB(170, 170, 170)
+            et.TextScaled = true
+            et.Font = Enum.Font.Gotham
+            et.Parent = executorBox
+
+            local ev = Instance.new("TextLabel")
+            ev.Size = UDim2.new(1, 0, 0, 20)
+            ev.Position = UDim2.new(0, 0, 0, 20)
+            ev.BackgroundTransparency = 1
+            ev.Text = getExecutor()
+            ev.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ev.TextScaled = true
+            ev.Font = Enum.Font.GothamBold
+            ev.Parent = executorBox
+
+            local timeBox = Instance.new("Frame")
+            timeBox.Size = UDim2.new(0, 170, 0, 48)
+            timeBox.Position = UDim2.new(1, -184, 1, -112)
+            timeBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            timeBox.Parent = contentFrame
+            Instance.new("UICorner", timeBox).CornerRadius = UDim.new(0, 8)
+
+            local timeTitle = Instance.new("TextLabel")
+            timeTitle.Size = UDim2.new(1, 0, 0, 18)
+            timeTitle.Position = UDim2.new(0, 0, 0, 4)
+            timeTitle.BackgroundTransparency = 1
+            timeTitle.Text = "Session time"
+            timeTitle.TextColor3 = Color3.fromRGB(170, 170, 170)
+            timeTitle.TextScaled = true
+            timeTitle.Font = Enum.Font.Gotham
+            timeTitle.Parent = timeBox
+
+            local timeValue = Instance.new("TextLabel")
+            timeValue.Size = UDim2.new(1, 0, 0, 24)
+            timeValue.Position = UDim2.new(0, 0, 0, 22)
+            timeValue.BackgroundTransparency = 1
+            timeValue.Text = "calculating..."
+            timeValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            timeValue.TextScaled = true
+            timeValue.Font = Enum.Font.GothamBold
+            timeValue.Parent = timeBox
+
+            spawn(function()
+                while timeValue.Parent do
+                    local elapsed = math.floor(tick() - sessionStart)
+                    timeValue.Text = string.format("%dm %ds", math.floor(elapsed/60), elapsed % 60)
+                    wait(1)
+                end
+            end)
+
+            local ageBox = Instance.new("Frame")
+            ageBox.Size = UDim2.new(0, 170, 0, 48)
+            ageBox.Position = UDim2.new(1, -184, 1, -58)
+            ageBox.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            ageBox.Parent = contentFrame
+            Instance.new("UICorner", ageBox).CornerRadius = UDim.new(0, 8)
+
+            local ageTitle = Instance.new("TextLabel")
+            ageTitle.Size = UDim2.new(1, 0, 0, 18)
+            ageTitle.Position = UDim2.new(0, 0, 0, 4)
+            ageTitle.BackgroundTransparency = 1
+            ageTitle.Text = "Account Age"
+            ageTitle.TextColor3 = Color3.fromRGB(170, 170, 170)
+            ageTitle.TextScaled = true
+            ageTitle.Font = Enum.Font.Gotham
+            ageTitle.Parent = ageBox
+
+            local ageValue = Instance.new("TextLabel")
+            ageValue.Size = UDim2.new(1, 0, 0, 24)
+            ageValue.Position = UDim2.new(0, 0, 0, 22)
+            ageValue.BackgroundTransparency = 1
+            ageValue.Text = player.AccountAge .. " days"
+            ageValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ageValue.TextScaled = true
+            ageValue.Font = Enum.Font.GothamBold
+            ageValue.Parent = ageBox
+
+        elseif tabName == "VilEX" then
+            local scrolling = Instance.new("ScrollingFrame")
+            scrolling.Size = UDim2.new(1, 0, 1, 0)
+            scrolling.BackgroundTransparency = 1
+            scrolling.ScrollBarThickness = 6
+            scrolling.Parent = contentFrame
+
+            local layout = Instance.new("UIListLayout")
+            layout.SortOrder = Enum.SortOrder.LayoutOrder
+            layout.Padding = UDim.new(0, 12)
+            layout.Parent = scrolling
+
+            -- AUTOGUARD SECTION
+            local header1 = Instance.new("TextLabel")
+            header1.Size = UDim2.new(1, -20, 0, 28)
+            header1.BackgroundTransparency = 1
+            header1.Text = "AUTOGUARD"
+            header1.TextColor3 = Color3.fromRGB(220, 220, 230)
+            header1.TextScaled = true
+            header1.Font = Enum.Font.GothamBold
+            header1.TextXAlignment = Enum.TextXAlignment.Center
+            header1.Parent = scrolling
+
+            local vlFrame1 = Instance.new("Frame")
+            vlFrame1.Size = UDim2.new(1, -20, 0, 26)
+            vlFrame1.BackgroundTransparency = 1
+            vlFrame1.Parent = scrolling
+
+            local vlText = Instance.new("TextLabel")
+            vlText.Size = UDim2.new(0.6, 0, 1, 0)
+            vlText.BackgroundTransparency = 1
+            vlText.Text = "Autoguard VL"
+            vlText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            vlText.TextSize = 16
+            vlText.Font = Enum.Font.Gotham
+            vlText.TextXAlignment = Enum.TextXAlignment.Left
+            vlText.Parent = vlFrame1
+
+            local vlToggle, vlCircle, setVLState, getVLState = createAnimatedToggle(vlFrame1, UDim2.new(1, -55, 0.5, -13), false)
+
+            vlToggle.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    task.wait()
+                    if getVLState() then
+                        startAutoguardVL()
+                    else
+                        stopAutoguardVL()
+                    end
+                end
+            end)
+
+            local vlKeyFrame = Instance.new("Frame")
+            vlKeyFrame.Size = UDim2.new(1, -20, 0, 26)
+            vlKeyFrame.BackgroundTransparency = 1
+            vlKeyFrame.Parent = scrolling
+
+            local vlKeyText = Instance.new("TextLabel")
+            vlKeyText.Size = UDim2.new(0.6, 0, 1, 0)
+            vlKeyText.BackgroundTransparency = 1
+            vlKeyText.Text = "Autoguard VL Keybind"
+            vlKeyText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            vlKeyText.TextSize = 16
+            vlKeyText.Font = Enum.Font.Gotham
+            vlKeyText.TextXAlignment = Enum.TextXAlignment.Left
+            vlKeyText.Parent = vlKeyFrame
+
+            createKeybindButton(vlKeyFrame, UDim2.new(1, -100, 0.5, -13), function(newKey)
+                vlKeybind = newKey
+            end)
+
+            local liteFrame1 = Instance.new("Frame")
+            liteFrame1.Size = UDim2.new(1, -20, 0, 26)
+            liteFrame1.BackgroundTransparency = 1
+            liteFrame1.Parent = scrolling
+
+            local liteText = Instance.new("TextLabel")
+            liteText.Size = UDim2.new(0.6, 0, 1, 0)
+            liteText.BackgroundTransparency = 1
+            liteText.Text = "Autoguard VL Lite"
+            liteText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            liteText.TextSize = 16
+            liteText.Font = Enum.Font.Gotham
+            liteText.TextXAlignment = Enum.TextXAlignment.Left
+            liteText.Parent = liteFrame1
+
+            createAnimatedToggle(liteFrame1, UDim2.new(1, -55, 0.5, -13), false)
+
+            local liteKeyFrame = Instance.new("Frame")
+            liteKeyFrame.Size = UDim2.new(1, -20, 0, 26)
+            liteKeyFrame.BackgroundTransparency = 1
+            liteKeyFrame.Parent = scrolling
+
+            local liteKeyText = Instance.new("TextLabel")
+            liteKeyText.Size = UDim2.new(0.6, 0, 1, 0)
+            liteKeyText.BackgroundTransparency = 1
+            liteKeyText.Text = "Autoguard VL Lite Keybind"
+            liteKeyText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            liteKeyText.TextSize = 16
+            liteKeyText.Font = Enum.Font.Gotham
+            liteKeyText.TextXAlignment = Enum.TextXAlignment.Left
+            liteKeyText.Parent = liteKeyFrame
+
+            createKeybindButton(liteKeyFrame, UDim2.new(1, -100, 0.5, -13), function(newKey)
+                liteKeybind = newKey
+            end)
+
+            -- PERFORMANCE SECTION (NEW)
+            local header2 = Instance.new("TextLabel")
+            header2.Size = UDim2.new(1, -20, 0, 28)
+            header2.BackgroundTransparency = 1
+            header2.Text = "PERFORMANCE"
+            header2.TextColor3 = Color3.fromRGB(220, 220, 230)
+            header2.TextScaled = true
+            header2.Font = Enum.Font.GothamBold
+            header2.TextXAlignment = Enum.TextXAlignment.Center
+            header2.Parent = scrolling
+
+            local perfFrame = Instance.new("Frame")
+            perfFrame.Size = UDim2.new(1, -20, 0, 26)
+            perfFrame.BackgroundTransparency = 1
+            perfFrame.Parent = scrolling
+
+            local perfText = Instance.new("TextLabel")
+            perfText.Size = UDim2.new(0.6, 0, 1, 0)
+            perfText.BackgroundTransparency = 1
+            perfText.Text = "Performance Mode"
+            perfText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            perfText.TextSize = 16
+            perfText.Font = Enum.Font.Gotham
+            perfText.TextXAlignment = Enum.TextXAlignment.Left
+            perfText.Parent = perfFrame
+
+            createAnimatedToggle(perfFrame, UDim2.new(1, -55, 0.5, -13), false)
+
+            local perfKeyFrame = Instance.new("Frame")
+            perfKeyFrame.Size = UDim2.new(1, -20, 0, 26)
+            perfKeyFrame.BackgroundTransparency = 1
+            perfKeyFrame.Parent = scrolling
+
+            local perfKeyText = Instance.new("TextLabel")
+            perfKeyText.Size = UDim2.new(0.6, 0, 1, 0)
+            perfKeyText.BackgroundTransparency = 1
+            perfKeyText.Text = "Performance Keybind"
+            perfKeyText.TextColor3 = Color3.fromRGB(240, 240, 240)
+            perfKeyText.TextSize = 16
+            perfKeyText.Font = Enum.Font.Gotham
+            perfKeyText.TextXAlignment = Enum.TextXAlignment.Left
+            perfKeyText.Parent = perfKeyFrame
+
+            createKeybindButton(perfKeyFrame, UDim2.new(1, -100, 0.5, -13), function() end)
+
+            scrolling.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y + 40)
+
+            UserInputService.InputBegan:Connect(function(input, gp)
+                if gp then return end
+                if vlKeybind and input.KeyCode == vlKeybind then
+                    local newState = not getVLState()
+                    setVLState(newState)
+                    if newState then
+                        startAutoguardVL()
+                    else
+                        stopAutoguardVL()
+                    end
+                end
+            end)
+
+        elseif tabName == "Settings" then
+            local settingsHeader = Instance.new("TextLabel")
+            settingsHeader.Size = UDim2.new(1, -30, 0, 28)
+            settingsHeader.Position = UDim2.new(0, 15, 0, 12)
+            settingsHeader.BackgroundTransparency = 1
+            settingsHeader.Text = "Keybinds"
+            settingsHeader.TextColor3 = Color3.fromRGB(180, 180, 180)
+            settingsHeader.TextScaled = true
+            settingsHeader.Font = Enum.Font.GothamBold
+            settingsHeader.Parent = contentFrame
+
+            local keybindRow = Instance.new("Frame")
+            keybindRow.Size = UDim2.new(1, -30, 0, 42)
+            keybindRow.Position = UDim2.new(0, 15, 0, 48)
+            keybindRow.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            keybindRow.Parent = contentFrame
+            Instance.new("UICorner", keybindRow).CornerRadius = UDim.new(0, 8)
+
+            local keybindLabel = Instance.new("TextLabel")
+            keybindLabel.Size = UDim2.new(0.6, 0, 1, 0)
+            keybindLabel.Position = UDim2.new(0, 12, 0, 0)
+            keybindLabel.BackgroundTransparency = 1
+            keybindLabel.Text = "Menu Toggle keybind"
+            keybindLabel.TextColor3 = Color3.fromRGB(210, 210, 210)
+            keybindLabel.TextScaled = true
+            keybindLabel.Font = Enum.Font.Gotham
+            keybindLabel.Parent = keybindRow
+
+            local keybindButton = Instance.new("TextButton")
+            keybindButton.Size = UDim2.new(0, 110, 0, 30)
+            keybindButton.Position = UDim2.new(1, -122, 0.5, -15)
+            keybindButton.BackgroundColor3 = Color3.fromRGB(35, 32, 45)
+            keybindButton.Text = currentKeybind.Name
+            keybindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            keybindButton.TextScaled = true
+            keybindButton.Font = Enum.Font.Gotham
+            keybindButton.Parent = keybindRow
+            Instance.new("UICorner", keybindButton).CornerRadius = UDim.new(0, 6)
+
+            keybindButton.MouseButton1Click:Connect(function()
+                if changingKeybind then return end
+                changingKeybind = true
+                keybindButton.Text = "Press key..."
+                local con = UserInputService.InputBegan:Connect(function(input, gp)
+                    if gp then return end
+                    if input.KeyCode ~= Enum.KeyCode.Unknown then
+                        currentKeybind = input.KeyCode
+                        keybindButton.Text = currentKeybind.Name
+                        changingKeybind = false
+                        con:Disconnect()
+                    end
+                end)
+            end)
+
+            local uninjectButton = Instance.new("TextButton")
+            uninjectButton.Size = UDim2.new(0, 110, 0, 32)
+            uninjectButton.Position = UDim2.new(1, -125, 1, -42)
+            uninjectButton.BackgroundColor3 = Color3.fromRGB(24, 21, 32)
+            uninjectButton.Text = "Uninject"
+            uninjectButton.TextColor3 = Color3.fromRGB(220, 200, 255)
+            uninjectButton.TextScaled = true
+            uninjectButton.Font = Enum.Font.Gotham
+            uninjectButton.Parent = contentFrame
+            Instance.new("UICorner", uninjectButton).CornerRadius = UDim.new(0, 8)
+
+            uninjectButton.MouseButton1Click:Connect(function()
+                fullUninject()
+            end)
+        end
+
+        local fadeIn = TweenService:Create(contentFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), { BackgroundTransparency = 0 })
+        fadeIn:Play()
+    end)
+end
+
+for i, tabName in ipairs(tabData) do
+    local tab = Instance.new("TextButton")
+    tab.Name = tabName
+    tab.Size = UDim2.new(1, -6, 0, 32)
+    tab.Position = UDim2.new(0, 3, 0, 38 + (i-1)*36)
+    tab.BackgroundColor3 = mainColor
+    tab.Text = tabName
+    tab.TextColor3 = Color3.fromRGB(200, 200, 200)
+    tab.TextScaled = true
+    tab.Font = Enum.Font.Gotham
+    tab.TextXAlignment = Enum.TextXAlignment.Left
+    tab.Parent = sidebar
+    Instance.new("UICorner", tab).CornerRadius = UDim.new(0, 6)
+
+    tab.MouseButton1Click:Connect(function()
+        local tween = TweenService:Create(tab, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)})
+        tween:Play()
+        tween.Completed:Connect(function()
+            selectTab(tab, tabName)
+        end)
+    end)
+
+    tab.MouseEnter:Connect(function()
+        if tab.BackgroundColor3 ~= Color3.fromRGB(28, 25, 38) then
+            TweenService:Create(tab, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(32, 30, 40)}):Play()
+        end
+    end)
+
+    tab.MouseLeave:Connect(function()
+        if tab.BackgroundColor3 ~= Color3.fromRGB(28, 25, 38) then
+            TweenService:Create(tab, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = mainColor}):Play()
+        end
+    end)
+end
+
+local versionLabel = Instance.new("TextLabel")
+versionLabel.Size = UDim2.new(0, 60, 0, 18)
+versionLabel.Position = UDim2.new(0, 12, 1, -22)
+versionLabel.BackgroundTransparency = 1
+versionLabel.Text = "c0.2"
+versionLabel.TextColor3 = Color3.fromRGB(120, 120, 130)
+versionLabel.TextScaled = true
+versionLabel.Font = Enum.Font.Gotham
+versionLabel.TextXAlignment = Enum.TextXAlignment.Left
+versionLabel.Parent = mainFrame
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == currentKeybind then
+        mainFrame.Visible = not mainFrame.Visible
+    end
+end)
+
+player.AncestryChanged:Connect(function(_, parent)
+    if not parent then
+        sendUninjectWebhook()
+        stopAutoguardVL()
+    end
+end)
+
+task.wait(0.2)
+local homeBtn = sidebar:FindFirstChild("Home")
+if homeBtn then
+    selectTab(homeBtn, "Home")
+end
